@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 #include <unistd.h>
 
 static	int		ft_pow(int nb, int pow)

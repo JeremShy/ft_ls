@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:41:08 by jcamhi            #+#    #+#             */
-/*   Updated: 2015/12/07 15:15:45 by jcamhi           ###   ########.fr       */
+/*   Updated: 2015/11/26 11:45:00 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t			i;
+	size_t		i;
 	unsigned char	*s1;
 	unsigned char	*s2;
 

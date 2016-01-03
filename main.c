@@ -9,6 +9,7 @@ int	main(int ac, char **av)
 
 	cont = 1;
 	i = 1;
+	ft_printf("x = %d\n", 12);
 	while(i < ac && cont)
 	{
 		if (av[i][0] == '-')
@@ -33,6 +34,7 @@ int	main(int ac, char **av)
 		else
 			cont = 0;
 	}
+	ft_printf("options.l = %d\noptions.R = %d\noptions.a = %d\noptions.r = %d\noptions.t = %d\n", options.l, options.R, options.a, options.r, options.t);
 	return (0);
 }
 

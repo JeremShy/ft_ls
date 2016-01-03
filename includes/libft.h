@@ -6,15 +6,24 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 12:40:08 by jcamhi            #+#    #+#             */
-/*   Updated: 2015/12/11 12:23:25 by magouin          ###   ########.fr       */
+/*   Updated: 2015/11/26 11:48:07 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
 # include <string.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <libft.h>
+# include <stdarg.h>
+# define BUFF_SIZE 42
 
+int				ft_printf(const char *str, ...);
+int				get_next_line(int const fd, char **line);
 void				*ft_memset(void *b, int c, size_t len);
 void				*ft_memcpy(void *dst,
 					const void *src, size_t n);

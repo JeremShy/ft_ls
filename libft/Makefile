@@ -6,7 +6,7 @@
 #    By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 18:15:40 by jcamhi            #+#    #+#              #
-#    Updated: 2015/12/08 14:07:19 by jcamhi           ###   ########.fr        #
+#    Updated: 2015/12/03 11:01:41 by jcamhi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC_PATH = ./
 SRC_NAME = ft_atoi.c \
 		   ft_strrchr.c \
 		   ft_bzero.c \
+		   ft_printf.c \
 		   ft_isalnum.c \
 		   ft_isalpha.c \
 		   ft_isascii.c \
@@ -69,10 +70,11 @@ SRC_NAME = ft_atoi.c \
 		   ft_lstdelone.c \
 		   ft_lstiter.c \
 		   ft_lstnew.c \
-		   ft_lstmap.c
+		   ft_lstmap.c \
+		   get_next_line.c
 OBJ_PATH = ./
 
-INC_PATH = ./include/
+INC_PATH = ./includes/
 
 LIB_PATH = ./
 
@@ -80,7 +82,7 @@ NAME = ../lib/libft.a
 
 CC = gcc
 
-CFLAGS = -Werror -Wall -Wextra -c -g
+CFLAGS = -Werror -Wall -Wextra -c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -91,8 +93,8 @@ INC = $(addprefix -I,$(INC_PATH))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	    $(CC) $(CFLAGS) $(SRC) -I $(INC) 
+$(NAME):
+	    $(CC) $(CFLAGS) $(INC) $(SRC)
 		ar r $(NAME) $(OBJ_NAME)
 		ranlib $(NAME)
 

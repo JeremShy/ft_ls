@@ -6,11 +6,11 @@
 /*   By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 12:34:18 by jcamhi            #+#    #+#             */
-/*   Updated: 2015/12/07 21:31:24 by jcamhi           ###   ########.fr       */
+/*   Updated: 2015/12/17 18:09:07 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <get_next_line.h>
+#include <libft.h>
 
 static t_list	*ft_lstdict(t_list *lst, const int n)
 {
@@ -40,7 +40,6 @@ static	char	*handle_first_buff(t_list *prec)
 		{
 			ret = ft_strdup((char*)prec->content + 1);
 			prec->content = (void*)ft_strdup(ret);
-			free(ret);
 			ret = ft_memalloc(1);
 		}
 		else
@@ -57,7 +56,6 @@ static int		handle_buffer(t_list *prec, char **ret, int fd, int *r)
 {
 	int		i;
 	char	buff[BUFF_SIZE + 1];
-	char	*tmp;
 
 	i = -1;
 	while ((*r = read(fd, buff, BUFF_SIZE)) && *r != -1)
@@ -69,17 +67,13 @@ static int		handle_buffer(t_list *prec, char **ret, int fd, int *r)
 			if (buff[i] == '\n')
 			{
 				buff[i] = '\0';
-				tmp = *ret;
-				*ret = ft_strjoin(tmp, buff);
-				free(tmp);
+				*ret = ft_strjoin(*ret, buff);
 				prec->content = (void*)ft_strdup(buff + i + 1);
 				return (1);
 			}
 			i++;
 		}
-		tmp = *ret;
-		*ret = ft_strjoin(tmp, buff);
-		free(tmp);
+		*ret = ft_strjoin(*ret, buff);
 	}
 	if (i == -1 || *r == -1)
 		return (-1);

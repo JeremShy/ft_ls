@@ -6,11 +6,11 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 10:52:37 by jcamhi            #+#    #+#             */
-/*   Updated: 2015/12/07 21:37:02 by jcamhi           ###   ########.fr       */
+/*   Updated: 2015/11/26 12:31:05 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 #include <stdlib.h>
 
 t_list	*ft_lstnew(void const *content, size_t content_size)

@@ -2,7 +2,6 @@
 # define FT_LS_H
 
 # include <libft.h>
-# include <get_next_line.h>
 # include <dirent.h>
 # include <sys/stat.h>
 # include <sys/types.h>
