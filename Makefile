@@ -6,11 +6,12 @@
 #    By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/08 11:49:18 by jcamhi            #+#    #+#              #
-#    Updated: 2015/12/11 16:36:47 by magouin          ###   ########.fr        #
+#    Updated: 2016/01/21 22:30:14 by jcamhi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_NAME = main.c
+SRC_NAME = main.c \
+		   parsing.c
 
 OBJ_PATH = ./obj/
 
@@ -22,7 +23,7 @@ CC = gcc
 
 CFLAGS = -Werror -Wextra -Wall -g
 
-LFLAGS = -Llib/ -lft 
+LFLAGS = -Llib/ -lft -lftprintf
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -36,19 +37,21 @@ $(NAME) : $(OBJ)
 	$(CC) $(LFLAGS) $(INC) -o $@ $^ 
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-#	make -C libft
+#	make -C libsrcs/libft
+#	make -C libsrcs/ft_printf
 	@mkdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
 	$(CC) $(CFLAGS) $(INC) -o $@ -c $< 
 
 clean:
-#	make -C libft clean
+#	make -C libsrcs/libft clean
+#	make -C libsrcs/ft_printf clean
 	/bin/rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
 	
 fclean: clean
 	rm -fv $(NAME)
-#	@make -C libft fclean
-#	@make -C minilibx fclean
+#	make -C libsrcs/libft fclean
+#	make -C libsrcs/ft_printf fclean
 
 re: fclean all
 

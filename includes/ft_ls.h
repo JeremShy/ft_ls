@@ -14,6 +14,7 @@
 # include <errno.h>
 
 typedef struct	dirent t_dirent;
+
 typedef struct	s_opt
 {
 	int		l;
@@ -21,15 +22,16 @@ typedef struct	s_opt
 	int		a;
 	int		r;
 	int		t;
-	char		folder[];
-}		t_opt;
+	char	folder[];
+}				t_opt;
+
 typedef struct	s_file
 {
-
-	char		name[256 + 1];
-	ino_t		fileno;
-	__uint16_t	name_len;
+	char			name[256 + 1];
+	ino_t			fileno;
+	__uint16_t		name_len;
 	struct s_file	*next;
-}		t_file;
+}				t_file;
 
+t_opt			ft_parsing(int ac, char **av);
 #endif
