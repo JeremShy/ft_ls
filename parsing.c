@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:26:12 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 02:00:01 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 02:26:54 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_opt   ft_init(int *i)
 	t_opt options;
 
 	options.l = 0;
-	options.R = 0;
+	options.rmaj = 0;
 	options.a = 0;
 	options.r = 0;
 	options.t = 0;
@@ -56,7 +56,7 @@ t_opt   ft_parsing(int ac, char **av)
 			if (ft_strchr(av[i], 'l'))
 				options.l = 1;
 			if (ft_strchr(av[i], 'R'))
-				options.R = 1;
+				options.rmaj = 1;
 			if (ft_strchr(av[i], 'a'))
 				options.a = 1;
 			if (ft_strchr(av[i], 'r'))

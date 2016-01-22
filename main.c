@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 02:13:25 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 02:22:21 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	print_error(char *dir)
 {
 	char *message;
 
+	dir = ft_strchr(dir, '/');
 	message = ft_strjoin("ls: ", dir);
 	perror(message);
 	free(message);
@@ -51,10 +52,11 @@ int			main(int ac, char **av)
 	start = find_start(ac, av);
 	if (start == ac)
 		list(options, ".");
+	else if (start == ac - 1)
+			list(options, av[start]);
 	else
 		while (start < ac)
 		{
-			ft_printf("%s:\n\n", av[start]);
 			list(options, av[start]);
 			start++;
 		}
