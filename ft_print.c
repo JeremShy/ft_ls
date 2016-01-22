@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 14:39:55 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 16:34:15 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 17:36:42 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			ft_print_with_l(t_file *list)
 		print_sp(max.owner_name - ft_strlen(list->owner_name) + max.owner_name - ft_strlen(list->owner_name));
 		ft_printf("%s ", list->owner_name);
 		print_sp(1 + max.group_name - ft_strlen(list->group_name) + max.group_name - ft_strlen(list->group_name));
-		ft_printf("%s ", list->group_name);
+		ft_printf("%s\n", list->group_name);
 		list = list->next;
 	}
 }
