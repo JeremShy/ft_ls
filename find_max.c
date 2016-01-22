@@ -6,13 +6,13 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:53:29 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 15:54:14 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 15:57:23 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_ls.h>
 
-static int		len(int nbr)
+int				len(int nbr)
 {
 	char    *str;
 	int     ret;

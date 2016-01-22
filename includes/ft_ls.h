@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 15:54:44 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 15:57:36 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ void					add_elem_start(t_dirent dir, const char *path,
 							t_file **list);
 void					ft_print_with_l(t_file *list);
 t_max					find_max(t_file *list);
+int						len(int nbr);
 #endif
