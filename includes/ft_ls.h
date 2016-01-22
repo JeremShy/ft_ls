@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 04:25:26 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 15:54:44 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,17 @@ typedef struct			s_file
 	struct s_file	*next;
 }						t_file;
 
+typedef struct			s_max
+{
+	int				name;
+	int				fileno;
+	int				rights;
+	int				nlinks;
+	int				owner_name;
+	int				group_name;
+	int				nbytes;
+}						t_max;
+
 t_opt					ft_parsing(int ac, char **av);
 int						find_start(int ac, char **av);
 void					print_error(char *dir);
@@ -61,4 +72,6 @@ void					add_elem_end(t_dirent dir, const char *path,
 							t_file *list);
 void					add_elem_start(t_dirent dir, const char *path,
 							t_file **list);
+void					ft_print_with_l(t_file *list);
+t_max					find_max(t_file *list);
 #endif

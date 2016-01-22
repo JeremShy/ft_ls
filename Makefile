@@ -6,13 +6,15 @@
 #    By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/08 11:49:18 by jcamhi            #+#    #+#              #
-#    Updated: 2016/01/22 02:55:42 by jcamhi           ###   ########.fr        #
+#    Updated: 2016/01/22 15:55:05 by jcamhi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_NAME = main.c \
 		   parsing.c \
-		   linked_list.c
+		   linked_list.c \
+		   ft_print.c \
+		   find_max.c
 
 OBJ_PATH = ./obj/
 

@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 04:40:08 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 14:40:13 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,16 @@
 void		print_error(char *dir)
 {
 	char	*message;
+	char	*ptr;
 
-	dir = ft_strchr(dir, '/');
-	message = ft_strjoin("ls: ", dir);
+	ptr = ft_strchr(dir, '/');
+	if (ptr)
+		ptr++;
+	else
+		ptr = dir;
+	message = ft_strjoin("ls: ", ptr);
 	perror(message);
 	free(message);
-}
-
-
-
-static void	ft_print_with_l(t_file *list)
-{
-
-	while(list != NULL)
-	{
-		ft_printf("%s ", list->rights);
-
-	}
 }
 
 int			list(t_opt options, char *dir)
