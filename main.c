@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 04:15:33 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 04:40:08 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@ void		print_error(char *dir)
 	message = ft_strjoin("ls: ", dir);
 	perror(message);
 	free(message);
+}
+
+
+
+static void	ft_print_with_l(t_file *list)
+{
+
+	while(list != NULL)
+	{
+		ft_printf("%s ", list->rights);
+
+	}
 }
 
 int			list(t_opt options, char *dir)
@@ -42,7 +54,8 @@ int			list(t_opt options, char *dir)
 		else
 			add_elem_end(*truc, dir, list);
 	}
-	while (
+	if (options.l)
+		ft_print_with_l(list);
 	options.r = 0;
 	closedir(directory);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 03:57:24 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 04:25:26 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,12 @@ typedef struct			s_file
 	char			name[PATH_MAX + 1];
 	ino_t			fileno;
 	int				name_len;
-	struct s_file	*next;
 	char			rights[12];
+	int				nlinks;
+	char			*owner_name;
+	char			*group_name;
+	int				nbytes;
+	struct s_file	*next;
 }						t_file;
 
 t_opt					ft_parsing(int ac, char **av);

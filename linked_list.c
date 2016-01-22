@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 04:15:08 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 04:36:22 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static char	handle_type(mode_t mode)
 {
-	if (mode & S_IFIFO)
+	if (mode & S_IFREG)
+		return ('-');
+	else if (mode & S_IFIFO)
 		return ('p');
 	else if (mode & S_IFCHR)
 		return ('c');
@@ -56,7 +58,7 @@ t_file	*create_elem(t_dirent dir, const char *path, t_file *suivant)
 	char	*rights;
 
 	ret = (t_file *)malloc(sizeof(t_file));
-	if (stat(path, &structure) == -1)
+	if (stat(ft_strjoinaf1(ft_strjoin(path, "/"), dir.d_name), &structure) == -1)
 	{
 		print_error((char*)path);
 		return (0);
@@ -67,6 +69,10 @@ t_file	*create_elem(t_dirent dir, const char *path, t_file *suivant)
 	rights = get_rights(structure.st_mode);
 	ft_strncpy(ret->rights, rights, 12);
 	free(rights);
+	ret->nlinks = structure.st_nlink;
+	ret->owner_name = getpwuid(structure.st_uid)->pw_name;
+	ret->group_name = getgrgid(structure.st_gid)->gr_name;
+
 	ret->next = suivant;
 	return (ret);
 }
