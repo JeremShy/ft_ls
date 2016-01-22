@@ -6,15 +6,15 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 02:22:21 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 04:15:33 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_ls.h>
 
-static void	print_error(char *dir)
+void		print_error(char *dir)
 {
-	char *message;
+	char	*message;
 
 	dir = ft_strchr(dir, '/');
 	message = ft_strjoin("ls: ", dir);
@@ -24,10 +24,12 @@ static void	print_error(char *dir)
 
 int			list(t_opt options, char *dir)
 {
-	DIR		*directory;
-	t_dirent *truc;
+	DIR			*directory;
+	t_dirent	*truc;
+	t_file		*list;
 
 	directory = opendir(dir);
+	list = NULL;
 	if (!directory)
 	{
 		print_error(dir);
@@ -35,8 +37,12 @@ int			list(t_opt options, char *dir)
 	}
 	while ((truc = readdir(directory)))
 	{
-		ft_putendl(truc->d_name);
+		if (list == NULL)
+			list = create_elem(*truc, dir, NULL);
+		else
+			add_elem_end(*truc, dir, list);
 	}
+	while (
 	options.r = 0;
 	closedir(directory);
 	return (1);
@@ -53,7 +59,7 @@ int			main(int ac, char **av)
 	if (start == ac)
 		list(options, ".");
 	else if (start == ac - 1)
-			list(options, av[start]);
+		list(options, av[start]);
 	else
 		while (start < ac)
 		{
