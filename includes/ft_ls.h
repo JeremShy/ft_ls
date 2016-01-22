@@ -34,4 +34,5 @@ typedef struct	s_file
 }				t_file;
 
 t_opt			ft_parsing(int ac, char **av);
+int				find_start(int ac, char **av);
 #endif

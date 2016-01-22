@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:26:12 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/21 22:26:34 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 02:00:01 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,23 @@ static t_opt   ft_init(int *i)
 	options.t = 0;
 	*i = 1;
 	return (options);
+}
+
+int		find_start(int ac, char **av)
+{
+	int	i;
+	int	cont;
+
+	i = 1;
+	cont = 1;
+	while(i < ac && cont)
+	{
+		if (av[i][0] == '-')
+			i++;
+		else
+			return (i);
+	}
+	return (i);
 }
 
 t_opt   ft_parsing(int ac, char **av)
