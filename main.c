@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/21 22:57:55 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/01/22 01:55:19 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ int	main(int ac, char **av)
 	t_opt	options;
 	DIR		*directory;
 
-	directory = opendir("/dev/");
+	directory = opendir("fwefwefwe");
+	if (!directory)
+	{
+		perror("");
+		return (0);
+	}
 	t_dirent *truc;
 	while ((truc = readdir(directory)))
 	{
