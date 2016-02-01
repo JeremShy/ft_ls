@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/01 16:37:21 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/01 19:11:53 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,19 @@ int			list(t_opt options, char *dir)
 	}
 	while ((truc = readdir(directory)))
 	{
-		if (list == NULL)
-			list = create_elem(*truc, dir, NULL);
-		else
-			add_elem_end(*truc, dir, list);
+		if (truc->d_name[0] != '.' || (truc->d_name[0] == '.' && options.a))
+		{
+			if (list == NULL)
+				list = create_elem(*truc, dir, NULL);
+			else
+				add_elem_end(*truc, dir, list);
+		}
 	}
+	if (list == NULL)
+		ft_printf("list = NULL");
 	list = ft_sort(list, options);
 	if (options.l)
-		ft_print_with_l(list, options);
+		ft_print_with_l(list);
 	options.r = 0;
 	closedir(directory);
 	return (1);
@@ -61,7 +66,6 @@ int			main(int ac, char **av)
 	int		start;
 
 	options = ft_parsing(ac, av);
-//	ft_printf("options.l = %d\noptions.R = %d\noptions.a = %d\noptions.r = %d\noptions.t = %d\n", options.l, options.R, options.a, options.r, options.t);
 	start = find_start(ac, av);
 	if (start == ac)
 		list(options, ".");
