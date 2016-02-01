@@ -6,7 +6,7 @@
 #    By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/08 11:49:18 by jcamhi            #+#    #+#              #
-#    Updated: 2016/01/21 22:11:40 by jcamhi           ###   ########.fr        #
+#    Updated: 2016/02/01 10:38:25 by jcamhi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_NAME = ft_printf.c \
 		ft_strdup.c \
 		ft_strjoinaf12.c \
 		ft_strjoinaf2.c \
+		ft_strjoinaf1.c \
 		ft_strlen.c \
 		ft_strsub.c \
 		ft_strtoupper.c \

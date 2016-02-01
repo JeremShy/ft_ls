@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:38:10 by jcamhi            #+#    #+#             */
-/*   Updated: 2015/11/25 15:49:29 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/01 15:34:21 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_strdel(char **ap)
 {
 	if (!ap)
-		return;
+		return ;
 	if (!*ap)
-		return;
+		return ;
 	free((void*)*ap);
 	*ap = NULL;
 }

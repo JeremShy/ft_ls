@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 12:27:52 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/18 23:18:05 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/01 10:00:36 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int		find_fin(const char *str, int i, t_arg *arg)
 
 	while (is_flag(str[i]))
 		i++;
-	while (ft_isdigit((int)str[i]))
-		i++;
+	i = after_width(str, i);
 	if (str[i] == '.')
 	{
 		i++;
@@ -44,26 +43,37 @@ int		find_flag(const char *str, int i, t_arg *arg)
 	int j;
 
 	i++;
+	arg->flag = ft_alloc_str_with_char('\0');
 	if (is_flag(str[i]))
 	{
 		j = 0;
 		while (is_flag(str[i + j]) && i + j < arg->fin)
 		{
-			arg->flag[j] = str[i + j];
+			arg->flag = ft_strjoinaf12(arg->flag,
+					ft_alloc_str_with_char(str[i + j]));
 			j++;
 		}
-		arg->flag[j] = '\0';
 		return (1);
 	}
 	arg->flag[0] = '\0';
 	return (0);
 }
 
-int		find_width(const char *str, int i, t_arg *arg)
+int		find_width(const char *str, int i, t_arg *arg, va_list list)
 {
 	int j;
 
 	j = i + 1;
+	if (str[j] == '*')
+	{
+		arg->width = va_arg(list, int);
+		if (arg->width < 0)
+		{
+			arg->width *= -1;
+			arg->flag = ft_strjoinaf1(arg->flag, "-");
+		}
+		return (1);
+	}
 	while (i < arg->fin && str[i] != '.')
 	{
 		if (ft_isdigit(str[i]) && !(str[i] == '0' && j == i))

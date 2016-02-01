@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 12:40:08 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/15 12:41:09 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/01 15:43:04 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ char				*ft_itoa_base(unsigned int nbr, int base);
 char				*ft_itoa_base_ll(long long nbr, int base);
 char				*ft_itoa_base_ull(unsigned long long nbr, int base);
 char				*ft_alloc_str(const char *str);
-int				ft_printf(const char *str, ...);
-int				get_next_line(int const fd, char **line);
+int					get_next_line(int const fd, char **line);
 void				*ft_memset(void *b, int c, size_t len);
 void				*ft_memcpy(void *dst,
 					const void *src, size_t n);
@@ -58,6 +57,7 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *s1, const char *s2);
 char				*ft_strnstr(const char *s1, const char *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
+int					ft_strrevcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
@@ -77,9 +77,9 @@ int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
-char                *ft_strjoinaf1(char *s1, char const *s2);
-char                *ft_strjoinaf2(char const *s1, char *s2);
-char                *ft_strjoinaf12(char *s1, char *s2);
+char				*ft_strjoinaf1(char *s1, char const *s2);
+char				*ft_strjoinaf2(char const *s1, char *s2);
+char				*ft_strjoinaf12(char *s1, char *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 void				ft_putchar(char c);

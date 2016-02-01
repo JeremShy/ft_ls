@@ -6,14 +6,14 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 09:10:19 by jcamhi            #+#    #+#             */
-/*   Updated: 2015/11/26 09:46:46 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/01 15:35:37 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <unistd.h>
 
-static	unsigned int		ft_pow(int nb, int pow)
+static unsigned int	ft_pow(int nb, int pow)
 {
 	if (pow == 0)
 		return (1);
@@ -21,7 +21,7 @@ static	unsigned int		ft_pow(int nb, int pow)
 		return (nb * ft_pow(nb, pow - 1));
 }
 
-static	void			ft_printing(int taille, unsigned int c)
+static void			ft_printing(int taille, unsigned int c)
 {
 	while (taille >= 0)
 	{
@@ -33,7 +33,7 @@ static	void			ft_printing(int taille, unsigned int c)
 
 void				ft_putunbr(unsigned int c)
 {
-	int		taille;
+	int				taille;
 	unsigned int	tmp;
 
 	if (c == 0)

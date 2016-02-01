@@ -6,15 +6,15 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 19:19:55 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/07 19:44:51 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/01 15:37:41 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-static int      compte(unsigned long long nbr, int base)
+static int	compte(unsigned long long nbr, int base)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	while (nbr != 0)
@@ -25,7 +25,7 @@ static int      compte(unsigned long long nbr, int base)
 	return (ret);
 }
 
-char            *ft_itoa_base_ull(unsigned long long nbr, int base)
+char		*ft_itoa_base_ull(unsigned long long nbr, int base)
 {
 	char		*retour;
 	long		nb;

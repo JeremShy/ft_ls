@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 17:43:05 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/01 16:36:56 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_LS_H
 
 # include <libft.h>
+# include <ft_printf.h>
 # include <dirent.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -28,6 +29,8 @@
 
 typedef struct dirent	t_dirent;
 typedef struct stat		t_stat;
+typedef struct tm		t_tm;
+typedef struct timespec	t_timespec;
 
 typedef struct			s_opt
 {
@@ -41,6 +44,7 @@ typedef struct			s_opt
 
 typedef struct			s_file
 {
+	int				blocks;
 	char			name[PATH_MAX + 1];
 	ino_t			fileno;
 	int				name_len;
@@ -50,6 +54,13 @@ typedef struct			s_file
 	char			*group_name;
 	int				nbytes;
 	struct s_file	*next;
+	char			*mounth;
+	char			*day_name;
+	char			*day_nbr;
+	char			*hour;
+	char			*min;
+	char			*sec;
+	t_timespec			m_time;
 }						t_file;
 
 typedef struct			s_max
@@ -61,6 +72,10 @@ typedef struct			s_max
 	int				owner_name;
 	int				group_name;
 	int				nbytes;
+	int				mounth;
+	int				day;
+	int				hour;
+	int				sec;
 }						t_max;
 
 t_opt					ft_parsing(int ac, char **av);
@@ -72,7 +87,8 @@ void					add_elem_end(t_dirent dir, const char *path,
 							t_file *list);
 void					add_elem_start(t_dirent dir, const char *path,
 							t_file **list);
-void					ft_print_with_l(t_file *list);
+void					ft_print_with_l(t_file *list, t_opt opt);
 t_max					find_max(t_file *list);
 int						len(int nbr);
+t_file					*ft_sort(t_file *list, t_opt opt);
 #endif

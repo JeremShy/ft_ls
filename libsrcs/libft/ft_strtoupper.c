@@ -6,13 +6,13 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 18:56:06 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/06 18:57:22 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/01 15:33:56 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-char *ft_strtoupper(char *str)
+char	*ft_strtoupper(char *str)
 {
 	int i;
 

@@ -6,13 +6,13 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 19:24:51 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/07 19:45:29 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/01 15:37:10 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-static int      compte(unsigned long nbr)
+static int		compte(unsigned long nbr)
 {
 	int ret;
 
@@ -25,12 +25,12 @@ static int      compte(unsigned long nbr)
 	return (ret);
 }
 
-char            *ft_itoa_ptr(void *ptr)
+char			*ft_itoa_ptr(void *ptr)
 {
-	char		*retour;
-	int		nb;
-	int		i;
-	char		tab[17];
+	char			*retour;
+	int				nb;
+	int				i;
+	char			tab[17];
 	unsigned long	nbr;
 
 	nbr = (unsigned long)ptr;

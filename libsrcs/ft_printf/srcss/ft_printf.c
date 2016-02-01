@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 18:51:46 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/18 23:02:53 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/01 09:43:57 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static void	ft_flat(t_arg *arg)
 		(arg->lm)[0] = '\0';
 }
 
-static void	find_things(t_arg *arg, char *str, int i)
+static void	find_things(t_arg *arg, char *str, int i, va_list list)
 {
 	find_flag(str, i, arg);
-	find_width(str, i, arg);
+	find_width(str, i, arg, list);
 	find_prec(str, i, arg);
 	find_lm(str, i, arg);
 }
@@ -68,7 +68,7 @@ static int	handle_arg(const char *str, int i, va_list list, int *o)
 		*o = arg.fin;
 		return (0);
 	}
-	find_things(&arg, (char*)str, i);
+	find_things(&arg, (char*)str, i, list);
 	ft_flat(&arg);
 	ret = init_ret(arg, list);
 	ret = init_things(&arg, ret, &nbr);
@@ -78,6 +78,7 @@ static int	handle_arg(const char *str, int i, va_list list, int *o)
 	*o = arg.fin;
 	nb = (int)ft_strlen(ret) + nbr;
 	free(ret);
+	free(arg.flag);
 	return (nb == 0 && arg.conv == 'c' ? 1 : nb);
 }
 

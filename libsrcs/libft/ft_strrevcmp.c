@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_2.c                                           :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/18 23:15:52 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/01 10:01:10 by jcamhi           ###   ########.fr       */
+/*   Created: 2015/11/24 11:18:14 by jcamhi            #+#    #+#             */
+/*   Updated: 2016/02/01 15:32:51 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-
-void	ft_increase(int *i, int *j)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	*i = *i + 1;
-	*j = *j + 1;
-}
+	int i;
 
-int		after_width(const char *str, int i)
-{
-	if (str[i] == '*')
+	i = 0;
+	while ((unsigned char)s1[i] == (unsigned char)s2[i] && s1[i] && s2[i])
 		i++;
-	else
-		while (ft_isdigit((int)str[i]))
-			i++;
-	return (i);
+	return (-1 * (int)((unsigned char)s1[i] - (unsigned char)s2[i]));
 }

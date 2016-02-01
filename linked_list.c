@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 14:28:42 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/01 15:47:12 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_file	*create_elem(t_dirent dir, const char *path, t_file *suivant)
 	t_file *ret;
 	t_stat	structure;
 	char	*rights;
+	char	*c_time;
 
 	ret = (t_file *)malloc(sizeof(t_file));
 	if (stat(ft_strjoinaf1(ft_strjoin(path, "/"), dir.d_name), &structure) == -1)
@@ -72,7 +73,16 @@ t_file	*create_elem(t_dirent dir, const char *path, t_file *suivant)
 	ret->nlinks = structure.st_nlink;
 	ret->owner_name = getpwuid(structure.st_uid)->pw_name;
 	ret->group_name = getgrgid(structure.st_gid)->gr_name;
-
+	ret->nbytes = structure.st_size;
+	ret->m_time = structure.st_mtimespec;
+	c_time = ctime(&((ret->m_time).tv_sec));
+	ret->day_name = ft_strsub(c_time, 0, 3);
+	ret->mounth = ft_strsub(c_time, 4, 3);
+	ret->day_nbr = ft_strsub(c_time, 8, 2);
+	ret->hour = ft_strsub(c_time, 11, 2);
+	ret->min = ft_strsub(c_time, 14, 2);
+	ret->sec = ft_strsub(c_time, 17, 2);
+	ret->blocks = structure.st_blocks;
 	ret->next = suivant;
 	return (ret);
 }
