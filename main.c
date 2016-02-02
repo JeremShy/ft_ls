@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/02 12:31:48 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/02 18:54:49 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ int			list_folder(t_opt options, char *dir)
 		}
 	}
 	list = ft_sort(list, options);
-	if (options.l)
-		ft_print_with_l(list);
+	ft_print(list, options);
 	if (options.rmaj)
 		ft_rec(list, options, dir);
 	options.r = 0;
@@ -61,22 +60,49 @@ int			list_folder(t_opt options, char *dir)
 	return (1);
 }
 
+static t_dirent	*find_dirent(DIR *directory, char *name)
+{
+	t_dirent *truc;
+
+	while ((truc = readdir(directory)))
+		if (ft_strequ(truc->d_name, name))
+			return (truc);
+	return (NULL);
+}
+
 int			main(int ac, char **av)
 {
-	t_opt	options;
-	int		start;
+	t_opt		options;
+	int			start;
+	t_file		*list;
+	DIR			*directory;
+	t_dirent	*truc;
 
 	options = ft_parsing(ac, av);
 	start = find_start(ac, av);
+	list = NULL;
 	if (start == ac)
-		list_folder(options, ".");
-	else if (start == ac - 1)
-		list_folder(options, av[start]);
+	{
+		directory = opendir(".");
+		truc = find_dirent(directory, ".");
+		list = create_elem(*truc, ".", NULL);
+	}
 	else
 		while (start < ac)
 		{
-			list_folder(options, av[start]);
+			directory = opendir(av[start]);
+			truc = find_dirent(directory, ".");
+			if (!list)
+				list = create_elem(*truc, av[start], NULL);
+			else
+				add_elem_end(*truc, av[start], list);
+			closedir(directory);
 			start++;
 		}
+	while (list)
+	{
+		ft_printf("list: %s\n", list->name);
+		list = list->next;
+	}
 	return (0);
 }
