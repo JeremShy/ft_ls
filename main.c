@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/01 19:11:53 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/02 12:31:48 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		print_error(char *dir)
 	free(message);
 }
 
-int			list(t_opt options, char *dir)
+int			list_folder(t_opt options, char *dir)
 {
 	DIR			*directory;
 	t_dirent	*truc;
@@ -50,12 +50,13 @@ int			list(t_opt options, char *dir)
 				add_elem_end(*truc, dir, list);
 		}
 	}
-	if (list == NULL)
-		ft_printf("list = NULL");
 	list = ft_sort(list, options);
 	if (options.l)
 		ft_print_with_l(list);
+	if (options.rmaj)
+		ft_rec(list, options, dir);
 	options.r = 0;
+	destroy_list(list);
 	closedir(directory);
 	return (1);
 }
@@ -68,13 +69,13 @@ int			main(int ac, char **av)
 	options = ft_parsing(ac, av);
 	start = find_start(ac, av);
 	if (start == ac)
-		list(options, ".");
+		list_folder(options, ".");
 	else if (start == ac - 1)
-		list(options, av[start]);
+		list_folder(options, av[start]);
 	else
 		while (start < ac)
 		{
-			list(options, av[start]);
+			list_folder(options, av[start]);
 			start++;
 		}
 	return (0);

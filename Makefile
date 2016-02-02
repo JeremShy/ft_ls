@@ -6,7 +6,7 @@
 #    By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/08 11:49:18 by jcamhi            #+#    #+#              #
-#    Updated: 2016/02/01 17:10:46 by jcamhi           ###   ########.fr        #
+#    Updated: 2016/02/02 12:13:00 by jcamhi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ SRC_NAME = main.c \
 		   linked_list.c \
 		   ft_print.c \
 		   find_max.c \
-		   sort.c
+		   sort.c \
+		   ft_rec.c \
+		   linked_list_2.c
 
 OBJ_PATH = ./obj/
 

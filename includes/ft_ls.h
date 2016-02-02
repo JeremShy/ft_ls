@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/01 18:55:28 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/02 12:31:05 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct			s_file
 	char			*hour;
 	char			*min;
 	char			*sec;
-	t_timespec			m_time;
+	t_timespec		m_time;
 	struct s_file	*next;
 }						t_file;
 
@@ -91,4 +91,8 @@ void					ft_print_with_l(t_file *list);
 t_max					find_max(t_file *list);
 int						len(int nbr);
 t_file					*ft_sort(t_file *list, t_opt opt);
+void					ft_rec(t_file *list, t_opt options, char *dir);
+int						list_folder(t_opt options, char *dir);
+t_file					*set_own_grp(t_stat structure, t_file *ret);
+void					destroy_list(t_file *list);
 #endif

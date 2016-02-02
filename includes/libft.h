@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 12:40:08 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/01 15:43:04 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/02 12:10:23 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 int					ft_atoi(const char *s);
-char				*ft_itoa(int n);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 

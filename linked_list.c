@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/01 15:47:12 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/02 12:30:27 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,16 @@ t_file	*create_elem(t_dirent dir, const char *path, t_file *suivant)
 	t_stat	structure;
 	char	*rights;
 	char	*c_time;
+	char	*join;
 
 	ret = (t_file *)malloc(sizeof(t_file));
-	if (stat(ft_strjoinaf1(ft_strjoin(path, "/"), dir.d_name), &structure) == -1)
+	join = ft_strjoinaf1(ft_strjoin(path, "/"), dir.d_name);
+	if (stat(join, &structure) == -1)
 	{
 		print_error((char*)path);
 		return (0);
 	}
+	free(join);
 	ft_strncpy(ret->name, dir.d_name, PATH_MAX);
 	ret->fileno = dir.d_ino;
 	ret->name_len = ft_strlen(ret->name);
@@ -71,8 +74,7 @@ t_file	*create_elem(t_dirent dir, const char *path, t_file *suivant)
 	ft_strncpy(ret->rights, rights, 12);
 	free(rights);
 	ret->nlinks = structure.st_nlink;
-	ret->owner_name = getpwuid(structure.st_uid)->pw_name;
-	ret->group_name = getgrgid(structure.st_gid)->gr_name;
+	ret = set_own_grp(structure, ret);
 	ret->nbytes = structure.st_size;
 	ret->m_time = structure.st_mtimespec;
 	c_time = ctime(&((ret->m_time).tv_sec));
