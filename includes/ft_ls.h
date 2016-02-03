@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/02 14:52:32 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/03 18:12:08 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct			s_file
 {
 	int				blocks;
 	char			name[PATH_MAX + 1];
-	ino_t			fileno;
 	int				name_len;
 	char			rights[12];
 	int				nlinks;
@@ -60,13 +59,13 @@ typedef struct			s_file
 	char			*min;
 	char			*sec;
 	t_timespec		m_time;
+	char			*path;
 	struct s_file	*next;
 }						t_file;
 
 typedef struct			s_max
 {
 	int				name;
-	int				fileno;
 	int				rights;
 	int				nlinks;
 	int				owner_name;
@@ -81,12 +80,12 @@ typedef struct			s_max
 t_opt					ft_parsing(int ac, char **av);
 int						find_start(int ac, char **av);
 void					print_error(char *dir);
-t_file					*create_elem(t_dirent dir, const char *path,
-							t_file *suivant);
-void					add_elem_end(t_dirent dir, const char *path,
-							t_file *list);
-void					add_elem_start(t_dirent dir, const char *path,
-							t_file **list);
+t_file					*create_elem(const char *path,
+							t_file *suivant, char *name);
+void					add_elem_end(const char *path,
+							t_file *list, char *name);
+void					add_elem_start(const char *path,
+							t_file **list, char *name);
 t_max					find_max(t_file *list);
 int						len(int nbr);
 t_file					*ft_sort(t_file *list, t_opt opt);
@@ -95,4 +94,5 @@ int						list_folder(t_opt options, char *dir);
 t_file					*set_own_grp(t_stat structure, t_file *ret);
 void					destroy_list(t_file *list);
 void					ft_print(t_file *list, t_opt options);
+t_file					*create_dir_list(t_opt options, int start, char **av, int ac);
 #endif

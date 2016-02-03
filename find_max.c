@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:53:29 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/01 10:55:39 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/03 17:58:12 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static t_max	init_max(void)
 	t_max max;
 
 	max.name = 0;
-	max.fileno = 0;
 	max.rights = 0;
 	max.nlinks = 0;
 	max.owner_name = 0;
@@ -46,7 +45,6 @@ static void		do_compare(int *n1, int n2)
 static void		comp_max(t_file list, t_max *max)
 {
 	do_compare(&(max->name), list.name_len);
-	do_compare(&(max->fileno), len(list.fileno));
 	do_compare(&(max->rights), ft_strlen(list.rights));
 	do_compare(&(max->nlinks), len(list.nlinks));
 	do_compare(&(max->owner_name), ft_strlen(list.owner_name));

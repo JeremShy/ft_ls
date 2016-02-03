@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/03 16:31:42 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/03 20:06:22 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void		print_error(char *dir)
 	else
 		ptr = dir;
 	message = ft_strjoin("ls: ", ptr);
+	printf("errno = %d\n", errno);
 	perror(message);
 	free(message);
 }
@@ -33,10 +34,17 @@ int			list_folder(t_opt options, char *dir)
 	t_dirent	*truc;
 	t_file		*list;
 
+	errno = 0;
 	directory = opendir(dir);
 	list = NULL;
 	if (!directory)
 	{
+		if (errno == 20)
+		{
+			list = create_elem(dir, NULL, dir);
+			errno = 0;
+			return (1);
+		}
 		print_error(dir);
 		return (0);
 	}
@@ -45,9 +53,9 @@ int			list_folder(t_opt options, char *dir)
 		if (truc->d_name[0] != '.' || (truc->d_name[0] == '.' && options.a))
 		{
 			if (list == NULL)
-				list = create_elem(*truc, dir, NULL);
+				list = create_elem(dir, NULL, truc->d_name);
 			else
-				add_elem_end(*truc, dir, list);
+				add_elem_end(dir, list, truc->d_name);
 		}
 	}
 	list = ft_sort(list, options);
@@ -75,7 +83,6 @@ int			main(int ac, char **av)
 	t_opt		options;
 	int			start;
 	t_file		*list;
-	t_file		*debut;
 	DIR			*directory;
 	t_dirent	*truc;
 
@@ -86,26 +93,14 @@ int			main(int ac, char **av)
 	{
 		directory = opendir(".");
 		truc = find_dirent(directory, ".");
-		list = create_elem(*truc, ".", NULL);
+		list = create_elem(".", NULL, truc->d_name);
 	}
 	else
-		while (start < ac)
-		{
-			directory = opendir(av[start]);
-			truc = find_dirent(directory, ".");
-			if (!list)
-				list = create_elem(*truc, av[start], NULL);
-			else
-				add_elem_end(*truc, av[start], list);
-			closedir(directory);
-			start++;
-		}
-	debut = list;
+		list = create_dir_list(options, start, av, ac);
 	while (list)
 	{
-		ft_printf("list: %s\n", list->name);
+		list_folder(options, list->path);
 		list = list->next;
 	}
-	destroy_list(debut);
 	return (0);
 }

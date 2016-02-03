@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/03 16:30:08 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/03 19:47:13 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,70 @@ void	destroy_list(t_file *list)
 		free(list->hour);
 		free(list->min);
 		free(list->sec);
+		free(list->path);
 		tmp = list->next;
 		free(list);
 		list = tmp;
 	}
+}
+
+void	add_list_with_name(t_file *list, char *name, char *path)
+{
+	while (list->next)
+		list = list->next;
+	list->next = malloc(sizeof(t_file));
+	ft_strncpy(list->next->name, name, PATH_MAX);
+	list->next->path = ft_strdup(path);
+	list->next->next = NULL;
+}
+
+t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
+{
+	char	*name;
+	t_file	*list2;
+	t_file	*list;
+	t_opt	tmp;
+	int		start2;
+
+	list2 = NULL;
+	options.l = 0;
+	start2 = start;
+	while (start < ac)
+	{
+		name = ft_strrchr(av[start], (int)'/');
+		if (!name)
+			name = av[start];
+		else if (*(name + 1) == '\0')
+		{
+			*name = '\0';
+			name = ft_strrchr(av[start], (int)'/');
+			if (!name)
+				name = av[start];
+			else name++;
+		}
+		else
+			name++;
+		if (!list2)
+		{
+			list2 = malloc(sizeof(t_file));
+			ft_strncpy(list2->name, name, PATH_MAX);
+			list2->path = av[start];
+			list2->next = NULL;
+		}
+		else
+			add_list_with_name(list2, name, av[start]);
+		start++;
+	}
+	tmp.t = 0;
+	list2 = ft_sort(list2, tmp);
+	list = NULL;
+	while (list2)
+	{
+		if (!list)
+			list = create_elem(list2->path, NULL, list2->name);
+		else
+			add_elem_end(list2->path, list, list2->name);
+		list2 = list2->next;
+	}
+	return (list);
 }

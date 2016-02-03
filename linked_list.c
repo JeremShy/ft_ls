@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/02 18:19:28 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/03 20:06:23 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*get_rights(mode_t mode)
 	return(rights);
 }
 
-t_file	*create_elem(t_dirent dir, const char *path, t_file *suivant)
+t_file	*create_elem(const char *path, t_file *suivant, char *name)
 {
 	t_file *ret;
 	t_stat	structure;
@@ -60,16 +60,16 @@ t_file	*create_elem(t_dirent dir, const char *path, t_file *suivant)
 	char	*join;
 
 	ret = (t_file *)malloc(sizeof(t_file));
-	join = ft_strjoinaf1(ft_strjoin(path, "/"), dir.d_name);
+	join = ft_strjoinaf1(ft_strjoin(path, "/"), name);
 	if (stat(join, &structure) == -1)
 	{
 		print_error((char*)path);
 		return (0);
 	}
 	free(join);
-	ft_strncpy(ret->name, dir.d_name, PATH_MAX);
-	ret->fileno = dir.d_ino;
+	ft_strncpy(ret->name, name, PATH_MAX);
 	ret->name_len = ft_strlen(ret->name);
+	ret->path = ft_strdup(path);
 	rights = get_rights(structure.st_mode);
 	ft_strncpy(ret->rights, rights, 12);
 	free(rights);
@@ -89,20 +89,20 @@ t_file	*create_elem(t_dirent dir, const char *path, t_file *suivant)
 	return (ret);
 }
 
-void	add_elem_end(t_dirent dir, const char *path, t_file *list)
+void	add_elem_end(const char *path, t_file *list, char *name)
 {
 	t_file *elem;
 
-	elem = create_elem(dir, path, NULL);
+	elem = create_elem(path, NULL, name);
 	while (list->next != NULL)
 		list = list->next;
 	list->next = elem;
 }
 
-void	add_elem_start(t_dirent dir, const char *path, t_file **list)
+void	add_elem_start(const char *path, t_file **list, char *name)
 {
 	t_file	*elem;
 
-	elem = create_elem(dir, path, *list);
+	elem = create_elem(path, *list, name);
 	*list = elem;
 }
