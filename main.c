@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/03 20:06:22 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/03 22:40:39 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		print_error(char *dir)
 	else
 		ptr = dir;
 	message = ft_strjoin("ls: ", ptr);
-	printf("errno = %d\n", errno);
+	ft_printf("errno = %d\n", errno);
 	perror(message);
 	free(message);
 }
@@ -45,6 +45,7 @@ int			list_folder(t_opt options, char *dir)
 			errno = 0;
 			return (1);
 		}
+		ft_printf("Dans le main\n");
 		print_error(dir);
 		return (0);
 	}
@@ -94,12 +95,17 @@ int			main(int ac, char **av)
 		directory = opendir(".");
 		truc = find_dirent(directory, ".");
 		list = create_elem(".", NULL, truc->d_name);
+		closedir(directory);
 	}
 	else
 		list = create_dir_list(options, start, av, ac);
 	while (list)
 	{
+		if (start != ac - 1 && start != ac)
+			ft_printf("%s:\n", list->name);
 		list_folder(options, list->path);
+		if (start != ac - 1 && start != ac && list->next != NULL)
+			ft_printf("\n");
 		list = list->next;
 	}
 	return (0);

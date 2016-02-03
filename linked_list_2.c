@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/03 19:47:13 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/03 22:54:49 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,14 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 		name = ft_strrchr(av[start], (int)'/');
 		if (!name)
 			name = av[start];
-		else if (*(name + 1) == '\0')
+		else if (*(name + 1) == '\0' && name != av[start])
 		{
 			*name = '\0';
 			name = ft_strrchr(av[start], (int)'/');
 			if (!name)
 				name = av[start];
-			else name++;
+			else
+				name++;
 		}
 		else
 			name++;
@@ -94,7 +95,7 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 		{
 			list2 = malloc(sizeof(t_file));
 			ft_strncpy(list2->name, name, PATH_MAX);
-			list2->path = av[start];
+			list2->path = ft_strsub(av[start], 0, name - av[start]);
 			list2->next = NULL;
 		}
 		else
@@ -106,6 +107,7 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 	list = NULL;
 	while (list2)
 	{
+		printf("list2->path : %s, list->name: %s\n", list2->path, list2->name);
 		if (!list)
 			list = create_elem(list2->path, NULL, list2->name);
 		else

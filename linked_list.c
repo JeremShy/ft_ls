@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/03 20:06:23 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/03 22:53:29 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ t_file	*create_elem(const char *path, t_file *suivant, char *name)
 	char	*join;
 
 	ret = (t_file *)malloc(sizeof(t_file));
-	join = ft_strjoinaf1(ft_strjoin(path, "/"), name);
+	join = ft_strjoin(path, name);
+	ft_printf("Dans linked_list.c, join = %s\n", join);
 	if (stat(join, &structure) == -1)
 	{
 		print_error((char*)path);
