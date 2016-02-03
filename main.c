@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/02 18:54:49 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/03 16:31:42 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int			main(int ac, char **av)
 	t_opt		options;
 	int			start;
 	t_file		*list;
+	t_file		*debut;
 	DIR			*directory;
 	t_dirent	*truc;
 
@@ -99,10 +100,12 @@ int			main(int ac, char **av)
 			closedir(directory);
 			start++;
 		}
+	debut = list;
 	while (list)
 	{
 		ft_printf("list: %s\n", list->name);
 		list = list->next;
 	}
+	destroy_list(debut);
 	return (0);
 }
