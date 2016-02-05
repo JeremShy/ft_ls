@@ -1,0 +1,27 @@
+total 2808
+drwxr-xr-x  26 jcamhi  2015_paris      884 Feb  4 15:16 .
+drwxr-xr-x  40 jcamhi  2015_paris     1428 Feb  4 15:16 ..
+-rw-r--r--@  1 jcamhi  2015_paris     6148 Feb  2 23:51 .DS_Store
+-rw-r--r--   1 jcamhi  2015_paris      867 Feb  1 17:17 .bon
+-rw-r--r--   1 jcamhi  2015_paris  1318871 Feb  1 10:37 .ft_ls.pdf
+drwxr-xr-x  14 jcamhi  2015_paris      476 Feb  3 23:29 .git
+-rw-r--r--   1 jcamhi  2015_paris      242 Feb  1 10:37 .gitignore
+-rw-r--r--   1 jcamhi  2015_paris    12288 Feb  4 15:15 .main.c.swp
+-rw-r--r--   1 jcamhi  2015_paris      909 Feb  1 17:17 .moi
+-rw-r--r--   1 jcamhi  2015_paris     1858 Feb  2 12:13 Makefile
+-rw-r--r--   1 jcamhi  2015_paris        7 Feb  1 11:39 auteur
+-rw-r--r--   1 jcamhi  2015_paris     1822 Feb  3 17:58 find_max.c
+-rwxr-xr-x   1 jcamhi  2015_paris    44996 Feb  4 15:16 ft_ls
+drwxr-xr-x   3 jcamhi  2015_paris      102 Feb  3 22:40 ft_ls.dSYM
+-rw-r--r--   1 jcamhi  2015_paris     1871 Feb  2 14:55 ft_print.c
+-rw-r--r--   1 jcamhi  2015_paris     1274 Feb  4 15:12 ft_rec.c
+drwxr-xr-x   5 jcamhi  2015_paris      170 Feb  3 18:12 includes
+drwxr-xr-x   4 jcamhi  2015_paris      136 Feb  1 15:49 lib
+drwxr-xr-x   4 jcamhi  2015_paris      136 Feb  1 10:38 libsrcs
+-rw-r--r--   1 jcamhi  2015_paris     3166 Feb  4 15:15 linked_list.c
+-rw-r--r--   1 jcamhi  2015_paris     2914 Feb  4 15:16 linked_list_2.c
+-rw-r--r--   1 jcamhi  2015_paris     2847 Feb  4 15:15 main.c
+drwxr-xr-x  11 jcamhi  2015_paris      374 Feb  4 15:16 obj
+-rw-r--r--   1 jcamhi  2015_paris     1722 Feb  1 10:37 parsing.c
+drwxr-xr-x   6 jcamhi  2015_paris      204 Feb  4 16:23 samples
+-rw-r--r--   1 jcamhi  2015_paris     1606 Feb  2 11:31 sort.c

@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/03 18:12:08 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/04 18:32:17 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct			s_file
 	int				blocks;
 	char			name[PATH_MAX + 1];
 	int				name_len;
-	char			rights[12];
+	char			rights[11];
 	int				nlinks;
 	char			*owner_name;
 	char			*group_name;
@@ -60,6 +60,7 @@ typedef struct			s_file
 	char			*sec;
 	t_timespec		m_time;
 	char			*path;
+	char			*path_to_lnk;
 	struct s_file	*next;
 }						t_file;
 

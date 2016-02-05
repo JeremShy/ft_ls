@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/03 22:54:49 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/04 15:16:05 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 	list = NULL;
 	while (list2)
 	{
-		printf("list2->path : %s, list->name: %s\n", list2->path, list2->name);
 		if (!list)
 			list = create_elem(list2->path, NULL, list2->name);
 		else

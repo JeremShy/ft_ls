@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/03 22:40:39 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/04 19:09:50 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,41 +69,25 @@ int			list_folder(t_opt options, char *dir)
 	return (1);
 }
 
-static t_dirent	*find_dirent(DIR *directory, char *name)
-{
-	t_dirent *truc;
-
-	while ((truc = readdir(directory)))
-		if (ft_strequ(truc->d_name, name))
-			return (truc);
-	return (NULL);
-}
-
 int			main(int ac, char **av)
 {
 	t_opt		options;
 	int			start;
 	t_file		*list;
-	DIR			*directory;
-	t_dirent	*truc;
 
 	options = ft_parsing(ac, av);
 	start = find_start(ac, av);
 	list = NULL;
 	if (start == ac)
-	{
-		directory = opendir(".");
-		truc = find_dirent(directory, ".");
-		list = create_elem(".", NULL, truc->d_name);
-		closedir(directory);
-	}
+		list = create_elem("./", NULL, "");
 	else
 		list = create_dir_list(options, start, av, ac);
 	while (list)
 	{
 		if (start != ac - 1 && start != ac)
 			ft_printf("%s:\n", list->name);
-		list_folder(options, list->path);
+		list_folder(options, (ft_strequ(list->name, "") ? ft_strdup(list->path):
+					ft_strjoinaf1(ft_strjoin(list->path, list->name), "/")));
 		if (start != ac - 1 && start != ac && list->next != NULL)
 			ft_printf("\n");
 		list = list->next;

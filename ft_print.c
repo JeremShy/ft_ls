@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 14:39:55 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/02 14:55:56 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/04 17:46:00 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ static void	ft_print_with_l(t_file *list)
 		ft_printf("%*d ", max.nbytes + 1, list->nbytes);
 		ft_printf("%s %s %s:%s ", list->mounth, list->day_nbr,
 				list->hour, list->min);
-		ft_printf("%s\n", list->name);
+		ft_printf("%s", list->name);
+		if (list->path_to_lnk)
+			ft_printf(" -> %s", list->path_to_lnk);
+		ft_printf("\n");
 		list = list->next;
 	}
 }
