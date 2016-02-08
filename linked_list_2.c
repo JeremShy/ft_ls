@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/04 15:16:05 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/08 19:34:03 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,27 @@ void	destroy_list(t_file *list)
 	}
 }
 
+void	destroy_fake_list(t_file *list)
+{
+	t_file *tmp;
+
+	while (list)
+	{
+		free(list->path);
+		free(list->name);
+		tmp = list->next;
+		free(list);
+		list = tmp;
+	}
+}
+
 void	add_list_with_name(t_file *list, char *name, char *path)
 {
 	while (list->next)
 		list = list->next;
 	list->next = malloc(sizeof(t_file));
 	ft_strncpy(list->next->name, name, PATH_MAX);
-	list->next->path = ft_strdup(path);
+	list->next->path = ft_strsub(path, 0, name - path);
 	list->next->next = NULL;
 }
 
@@ -103,6 +117,7 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 		start++;
 	}
 	tmp.t = 0;
+	tmp.r = 0;
 	list2 = ft_sort(list2, tmp);
 	list = NULL;
 	while (list2)
@@ -113,5 +128,6 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 			add_elem_end(list2->path, list, list2->name);
 		list2 = list2->next;
 	}
+	destroy_fake_list(list2);
 	return (list);
 }

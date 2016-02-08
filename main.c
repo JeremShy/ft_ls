@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/04 19:09:50 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/08 19:36:08 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int			list_folder(t_opt options, char *dir)
 		ft_rec(list, options, dir);
 	options.r = 0;
 	destroy_list(list);
+	free(dir);
 	closedir(directory);
 	return (1);
 }

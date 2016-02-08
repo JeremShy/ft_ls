@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:26:12 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/01/22 02:26:54 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/08 19:34:09 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int		find_start(int ac, char **av)
 	{
 		if (av[i][0] == '-')
 			i++;
+		else if (ft_strequ(av[i], "--"))
+			return (i + 1);
 		else
 			return (i);
 	}
@@ -50,7 +52,7 @@ t_opt   ft_parsing(int ac, char **av)
 
 	options = ft_init(&i);
 	cont = 1;
-	while(i < ac && cont)
+	while(i < ac && cont && !ft_strequ(av[i], "--"))
 		if (av[i][0] == '-')
 		{
 			if (ft_strchr(av[i], 'l'))
