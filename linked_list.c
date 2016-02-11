@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/10 18:53:05 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/11 17:39:19 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	get_rights(t_file *ret, mode_t mode)
 	ret->rights[10] = '\0';
 }
 
-t_file	*create_elem(const char *path, t_file *suivant, char *name)
+t_file	*create_elem(char *path, t_file *suivant, char *name)
 {
 	t_file *ret;
 	t_stat	structure;
@@ -92,7 +92,7 @@ t_file	*create_elem(const char *path, t_file *suivant, char *name)
 	return (ret);
 }
 
-void	add_elem_end(const char *path, t_file *list, char *name)
+void	add_elem_end(char *path, t_file *list, char *name)
 {
 	t_file *elem;
 
@@ -103,7 +103,7 @@ void	add_elem_end(const char *path, t_file *list, char *name)
 	list->next = elem;
 }
 
-void	add_elem_start(const char *path, t_file **list, char *name)
+void	add_elem_start(char *path, t_file **list, char *name)
 {
 	t_file	*elem;
 

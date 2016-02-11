@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/10 18:30:37 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/11 17:42:55 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ typedef struct			s_max
 t_opt					ft_parsing(int ac, char **av);
 int						find_start(int ac, char **av);
 void					print_error(char *dir);
-t_file					*create_elem(const char *path,
+t_file					*create_elem(char *path,
 							t_file *suivant, char *name);
-void					add_elem_end(const char *path,
+void					add_elem_end(char *path,
 							t_file *list, char *name);
-void					add_elem_start(const char *path,
+void					add_elem_start(char *path,
 							t_file **list, char *name);
 t_max					find_max(t_file *list);
 int						len(int nbr);

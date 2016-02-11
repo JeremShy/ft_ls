@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/10 18:22:41 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/11 23:46:57 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	destroy_list(t_file *list)
 		free(list->min);
 		free(list->sec);
 		free(list->path);
+		if (list->path_to_lnk)
+			free(list->path_to_lnk);
 		tmp = list->next;
 		free(list);
 		list = tmp;

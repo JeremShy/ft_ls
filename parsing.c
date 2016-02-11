@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:26:12 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/08 19:34:09 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/11 15:44:52 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static t_opt   ft_init(int *i)
 	options.a = 0;
 	options.r = 0;
 	options.t = 0;
+	options.f = 0;
 	*i = 1;
 	return (options);
 }

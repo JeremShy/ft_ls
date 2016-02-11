@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/10 19:12:31 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/11 17:44:22 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int			list_folder(t_opt options, char *dir)
 			name++;
 		path = ft_strsub(dir, 0, name - dir);
 		list = create_elem(path, NULL, name);
-		free(path);
 	}
 	while (errno != 20 && (truc = readdir(directory)))
 	{
@@ -79,7 +78,6 @@ int			list_folder(t_opt options, char *dir)
 		ft_rec(list, options, dir);
 	options.r = 0;
 	destroy_list(list);
-	free(dir);
 	if (errno != 20)
 		closedir(directory);
 	errno = 0;
@@ -91,12 +89,13 @@ int			main(int ac, char **av)
 	t_opt		options;
 	int			start;
 	t_file		*list;
+	char		*tmp;
 
 	options = ft_parsing(ac, av);
 	start = find_start(ac, av);
 	list = NULL;
 	if (start == ac)
-		list = create_elem("./", NULL, "");
+		list = create_elem(ft_strdup("./"), NULL, ft_strdup(""));
 	else
 		list = create_dir_list(options, start, av, ac);
 	options.f = 1;
@@ -106,8 +105,10 @@ int			main(int ac, char **av)
 	{
 		if (start != ac - 1 && start != ac)
 			ft_printf("%s:\n", list->name);
-		list_folder(options, (ft_strequ(list->name, "") ? ft_strdup(list->path):
-					ft_strjoinaf1(ft_strjoin(list->path, list->name), "/")));
+		tmp = ft_strequ(list->name, "") ? ft_strdup(list->path):
+					ft_strjoinaf1(ft_strjoin(list->path, list->name), "/");
+		list_folder(options, tmp);
+		free(tmp);
 		if (start != ac - 1 && start != ac && list->next != NULL)
 			ft_printf("\n");
 		list = list->next;
