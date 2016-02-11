@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/08 19:31:49 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/10 18:53:05 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ t_file	*create_elem(const char *path, t_file *suivant, char *name)
 	join = ft_strjoin(path, name);
 	if (lstat(join, &structure) == -1)
 	{
-		ft_printf("Name : %s Path: %s Join: %s\n", name, path, join);
 		print_error((char*)path);
 		return (0);
 	}

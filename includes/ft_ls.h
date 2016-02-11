@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/04 18:32:17 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/10 18:30:37 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct			s_opt
 	int		a;
 	int		r;
 	int		t;
-	char	folder[];
+	char	f;
 }						t_opt;
 
 typedef struct			s_file

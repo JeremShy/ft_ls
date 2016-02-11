@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/08 19:36:08 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/10 19:12:31 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void		print_error(char *dir)
 	else
 		ptr = dir;
 	message = ft_strjoin("ls: ", ptr);
-	ft_printf("errno = %d\n", errno);
 	perror(message);
 	free(message);
 }
@@ -33,23 +32,38 @@ int			list_folder(t_opt options, char *dir)
 	DIR			*directory;
 	t_dirent	*truc;
 	t_file		*list;
+	char		*name;
+	char		*path;
 
 	errno = 0;
 	directory = opendir(dir);
 	list = NULL;
-	if (!directory)
+	if (!directory && errno != 20)
 	{
-		if (errno == 20)
-		{
-			list = create_elem(dir, NULL, dir);
-			errno = 0;
-			return (1);
-		}
-		ft_printf("Dans le main\n");
 		print_error(dir);
 		return (0);
 	}
-	while ((truc = readdir(directory)))
+	if (errno == 20)
+	{
+		name = ft_strrchr(dir, (int)'/');
+		if (!name)
+			name = dir;
+		else if (*(name + 1) == '\0' && name != dir)
+		{
+			*name = '\0';
+			name = ft_strrchr(dir, (int)'/');
+			if (!name)
+				name = dir;
+			else
+				name++;
+		}
+		else
+			name++;
+		path = ft_strsub(dir, 0, name - dir);
+		list = create_elem(path, NULL, name);
+		free(path);
+	}
+	while (errno != 20 && (truc = readdir(directory)))
 	{
 		if (truc->d_name[0] != '.' || (truc->d_name[0] == '.' && options.a))
 		{
@@ -66,7 +80,9 @@ int			list_folder(t_opt options, char *dir)
 	options.r = 0;
 	destroy_list(list);
 	free(dir);
-	closedir(directory);
+	if (errno != 20)
+		closedir(directory);
+	errno = 0;
 	return (1);
 }
 
@@ -83,6 +99,9 @@ int			main(int ac, char **av)
 		list = create_elem("./", NULL, "");
 	else
 		list = create_dir_list(options, start, av, ac);
+	options.f = 1;
+	list = ft_sort(list, options);
+	options.f = 0;
 	while (list)
 	{
 		if (start != ac - 1 && start != ac)
