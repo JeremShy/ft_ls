@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 14:39:55 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/04 17:46:00 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/13 07:30:15 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ static int	find_total(t_file *list)
 	return (total);
 }
 
-static void	ft_print_with_l(t_file *list)
+static void	ft_print_with_l(t_file *list, int print_total)
 {
 	t_max	max;
 
 	max = find_max(list);
-	ft_printf("total %d\n", find_total(list));
+	if (print_total)
+		ft_printf("total %d\n", find_total(list));
 	while(list != NULL)
 	{
 		ft_printf("%*s ", max.rights, list->rights);
@@ -58,10 +59,10 @@ static void	ft_print_normal(t_file *list)
 	}
 }
 
-void		ft_print(t_file *list, t_opt options)
+void		ft_print(t_file *list, t_opt options, int print_total)
 {
 	if (options.l)
-		ft_print_with_l(list);
+		ft_print_with_l(list, print_total);
 	else
 		ft_print_normal(list);
 }

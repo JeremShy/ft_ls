@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/11 23:46:57 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/13 07:49:45 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	add_list_with_name(t_file *list, char *name, char *path)
 	list->next = malloc(sizeof(t_file));
 	ft_strncpy(list->next->name, name, PATH_MAX);
 	list->next->path = ft_strsub(path, 0, name - path);
+	list->next->av_name = name;
 	list->next->next = NULL;
 }
 

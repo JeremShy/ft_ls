@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 11:38:02 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/04 15:12:32 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/13 07:37:42 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_rec(t_file *list, t_opt options, char *dir)
 		{
 			path = ft_strjoinaf1(ft_strjoin(dir, list->name), "/");
 			ft_printf("\n%s:\n", path);
-			list_folder(options, path);
+			list_folder(options, path, 0, NULL);
 			free(path);
 		}
 		list = list->next;

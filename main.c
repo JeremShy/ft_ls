@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/11 17:44:22 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/13 07:46:45 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,18 @@ void		print_error(char *dir)
 	free(message);
 }
 
-int			list_folder(t_opt options, char *dir)
+int			list_folder(t_opt options, char *dir, int print_name,
+			char *name_pr)
 {
 	DIR			*directory;
 	t_dirent	*truc;
 	t_file		*list;
 	char		*name;
 	char		*path;
+	int		print_total;
 
 	errno = 0;
+	print_total = 1;
 	directory = opendir(dir);
 	list = NULL;
 	if (!directory && errno != 20)
@@ -61,6 +64,8 @@ int			list_folder(t_opt options, char *dir)
 			name++;
 		path = ft_strsub(dir, 0, name - dir);
 		list = create_elem(path, NULL, name);
+		print_total = 0;
+		print_name = 0;
 	}
 	while (errno != 20 && (truc = readdir(directory)))
 	{
@@ -73,7 +78,9 @@ int			list_folder(t_opt options, char *dir)
 		}
 	}
 	list = ft_sort(list, options);
-	ft_print(list, options);
+	if (print_name)
+		ft_printf("%s:\n", name_pr);
+	ft_print(list, options, print_total);
 	if (options.rmaj)
 		ft_rec(list, options, dir);
 	options.r = 0;
@@ -90,7 +97,9 @@ int			main(int ac, char **av)
 	int			start;
 	t_file		*list;
 	char		*tmp;
+	int		print_name;
 
+	print_name = 0;
 	options = ft_parsing(ac, av);
 	start = find_start(ac, av);
 	list = NULL;
@@ -104,14 +113,15 @@ int			main(int ac, char **av)
 	while (list)
 	{
 		if (start != ac - 1 && start != ac)
-			ft_printf("%s:\n", list->name);
+			print_name = 1;
 		tmp = ft_strequ(list->name, "") ? ft_strdup(list->path):
 					ft_strjoinaf1(ft_strjoin(list->path, list->name), "/");
-		list_folder(options, tmp);
+		list_folder(options, tmp, print_name, list->name);
 		free(tmp);
 		if (start != ac - 1 && start != ac && list->next != NULL)
 			ft_printf("\n");
 		list = list->next;
 	}
+	destroy_list(list);
 	return (0);
 }
