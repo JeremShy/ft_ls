@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/13 07:46:45 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/23 20:10:14 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int			main(int ac, char **av)
 			print_name = 1;
 		tmp = ft_strequ(list->name, "") ? ft_strdup(list->path):
 					ft_strjoinaf1(ft_strjoin(list->path, list->name), "/");
-		list_folder(options, tmp, print_name, list->name);
+		list_folder(options, tmp, print_name, list->av_name);
 		free(tmp);
 		if (start != ac - 1 && start != ac && list->next != NULL)
 			ft_printf("\n");

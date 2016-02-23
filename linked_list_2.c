@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/13 07:49:45 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/23 20:16:05 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,14 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 	while (list2)
 	{
 		if (!list)
+		{
 			list = create_elem(list2->path, NULL, list2->name);
+			list->av_name = ft_strdup(list2->av_name);
+		}
 		else
+		{
 			add_elem_end(list2->path, list, list2->name);
+		}
 		list2 = list2->next;
 	}
 	destroy_fake_list(list2);
