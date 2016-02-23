@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/23 20:16:05 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/23 23:13:17 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 	start2 = start;
 	while (start < ac)
 	{
-		name = ft_strrchr(av[start], (int)'/');
+		name = ft_strdup(ft_strrchr(av[start], (int)'/'));
 		if (!name)
 			name = av[start];
 		else if (*(name + 1) == '\0' && name != av[start])

@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/13 07:44:36 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/23 22:14:22 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ t_file					*create_elem(char *path,
 							t_file *suivant, char *name);
 void					add_elem_end(char *path,
 							t_file *list, char *name);
+void					add_elem_end_av(char *path,
+							t_file *list, char *name, char *av);
 void					add_elem_start(char *path,
 							t_file **list, char *name);
 t_max					find_max(t_file *list);

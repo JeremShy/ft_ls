@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/23 20:08:30 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/23 22:34:19 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,18 @@ void	add_elem_end(char *path, t_file *list, char *name)
 
 	if (!(elem = create_elem(path, NULL, name)))
 		return ;
+	while (list->next != NULL)
+		list = list->next;
+	list->next = elem;
+}
+
+void	add_elem_end_av(char *path, t_file *list, char *name, char *av)
+{
+	t_file *elem;
+
+	if (!(elem = create_elem(path, NULL, name)))
+		return ;
+	elem->av_name = ft_strdup(av);
 	while (list->next != NULL)
 		list = list->next;
 	list->next = elem;
