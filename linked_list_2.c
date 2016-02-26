@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/23 23:13:17 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/26 23:46:52 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,21 @@ void	destroy_fake_list(t_file *list)
 	}
 }
 
-void	add_list_with_name(t_file *list, char *name, char *path)
+void	add_list_with_name(t_file *list, char *name, char *path, int size)
 {
 	while (list->next)
 		list = list->next;
 	list->next = malloc(sizeof(t_file));
 	ft_strncpy(list->next->name, name, PATH_MAX);
-	list->next->path = ft_strsub(path, 0, name - path);
-	list->next->av_name = name;
+	list->next->path = ft_strsub(path, 0, size);
+	list->next->av_name = ft_strdup(path);
 	list->next->next = NULL;
 }
 
 t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 {
 	char	*name;
+	char	*dup;
 	t_file	*list2;
 	t_file	*list;
 	t_opt	tmp;
@@ -94,15 +95,16 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 	start2 = start;
 	while (start < ac)
 	{
-		name = ft_strdup(ft_strrchr(av[start], (int)'/'));
+		dup = ft_strdup(av[start]);
+		name = ft_strrchr(dup, (int)'/');
 		if (!name)
-			name = av[start];
+			name = dup;
 		else if (*(name + 1) == '\0' && name != av[start])
 		{
 			*name = '\0';
-			name = ft_strrchr(av[start], (int)'/');
+			name = ft_strrchr(dup, (int)'/');
 			if (!name)
-				name = av[start];
+				name = dup;
 			else
 				name++;
 		}
@@ -112,12 +114,14 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 		{
 			list2 = malloc(sizeof(t_file));
 			ft_strncpy(list2->name, name, PATH_MAX);
-			list2->path = ft_strsub(av[start], 0, name - av[start]);
+			list2->path = ft_strsub(dup, 0, name - dup);
+			list2->av_name = ft_strdup(av[start]);
 			list2->next = NULL;
 		}
 		else
-			add_list_with_name(list2, name, av[start]);
+			add_list_with_name(list2, name, av[start], name - dup);
 		start++;
+		free(dup);
 	}
 	tmp.t = 0;
 	tmp.r = 0;
@@ -132,7 +136,7 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 		}
 		else
 		{
-			add_elem_end(list2->path, list, list2->name);
+			add_elem_end_av(list2->path, list, list2->name, list2->av_name);
 		}
 		list2 = list2->next;
 	}
