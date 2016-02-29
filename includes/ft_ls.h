@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/23 22:14:22 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/29 11:37:44 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct			s_file
 	char			*path;
 	char			*path_to_lnk;
 	char			*av_name;
+	int				major;
+	int				minor;
 	struct s_file	*next;
 }						t_file;
 
@@ -76,6 +78,8 @@ typedef struct			s_max
 	int				mounth;
 	int				day;
 	int				hour;
+	int				major;
+	int				minor;
 	int				sec;
 }						t_max;
 

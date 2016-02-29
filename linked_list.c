@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/26 15:27:45 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/29 11:37:12 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ t_file	*create_elem(char *path, t_file *suivant, char *name)
 	ret->name_len = ft_strlen(ret->name);
 	ret->path = ft_strdup(path);
 	get_rights(ret, structure.st_mode);
+	if (ret->rights[0] == 'c' || ret->rights[0] == 'b')
+	{
+		ret->major = major(structure.st_rdev);
+		ret->minor = minor(structure.st_rdev);
+	}
 	ret->nlinks = structure.st_nlink;
 	ret = set_own_grp(structure, ret);
 	ret->nbytes = structure.st_size;
