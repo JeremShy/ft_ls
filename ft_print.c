@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 14:39:55 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/13 07:30:15 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/29 15:11:54 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,13 @@ static void	ft_print_with_l(t_file *list, int print_total)
 		ft_printf("%*d", max.nlinks + 1, list->nlinks);
 		ft_printf("%*s ", max.owner_name + 1, list->owner_name);
 		ft_printf("%*s ", max.group_name + 1, list->group_name);
-		ft_printf("%*d ", max.nbytes + 1, list->nbytes);
+		if (list->rights[0] == 'c' || list->rights[0] == 'b')
+		{
+			ft_printf("%*d, ", max.major, list->major);
+			ft_printf("%*d ", max.minor, list->minor);
+		}
+		else
+			ft_printf("%*d ", max.nbytes + 1, list->nbytes);
 		ft_printf("%s %s %s:%s ", list->mounth, list->day_nbr,
 				list->hour, list->min);
 		ft_printf("%s", list->name);

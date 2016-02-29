@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:53:29 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/03 17:58:12 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/02/29 15:00:44 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static t_max	init_max(void)
 	max.owner_name = 0;
 	max.group_name = 0;
 	max.nbytes = 0;
+	max.major = 0;
+	max.minor = 0;
 	return (max);
 }
 
@@ -50,6 +52,8 @@ static void		comp_max(t_file list, t_max *max)
 	do_compare(&(max->owner_name), ft_strlen(list.owner_name));
 	do_compare(&(max->group_name), ft_strlen(list.group_name));
 	do_compare(&(max->nbytes), len(list.nbytes));
+	do_compare(&(max->major), len(list.major));
+	do_compare(&(max->minor), len(list.minor));
 }
 
 t_max			find_max(t_file *list)
