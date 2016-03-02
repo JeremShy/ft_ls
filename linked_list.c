@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/29 11:37:12 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/02 15:22:37 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,34 @@ void	get_rights(t_file *ret, mode_t mode)
 	ret->rights[0] = handle_type(mode);
 	ret->rights[1] = (mode & S_IRUSR ? 'r' : '-');
 	ret->rights[2] = (mode & S_IWUSR ? 'w' : '-');
-	ret->rights[3] = (mode & S_IXUSR ? 'x' : '-');
+	if (mode & S_ISUID && !(mode & S_IXUSR))
+		ret->rights[3] = 'S';
+	else if (mode & S_ISUID && (mode & S_IXUSR))
+		ret->rights[3] = 's';
+	else if (!(mode & S_ISUID) && (mode & S_IXUSR))
+		ret->rights[3] = 'x';
+	else
+		ret->rights[3] = '-';
 	ret->rights[4] = (mode & S_IRGRP ? 'r' : '-');
 	ret->rights[5] = (mode & S_IWGRP ? 'w' : '-');
-	ret->rights[6] = (mode & S_IXGRP ? 'x' : '-');
+	if (mode & S_ISGID && !(mode & S_IXGRP))
+		ret->rights[6] = 'S';
+	else if (mode & S_ISGID && (mode & S_IXGRP))
+		ret->rights[6] = 's';
+	else if (!(mode & S_ISGID) && (mode & S_IXGRP))
+		ret->rights[6] = 'x';
+	else
+		ret->rights[6] = '-';
 	ret->rights[7] = (mode & S_IROTH ? 'r' : '-');
 	ret->rights[8] = (mode & S_IWOTH ? 'w' : '-');
-	ret->rights[9] = (mode & S_IXOTH ? 'x' : '-');
+	if (mode & S_ISVTX && !(mode & S_IXOTH))
+		ret->rights[9] = 'T';
+	else if (mode & S_ISVTX && (mode & S_IXOTH))
+		ret->rights[9] = 't';
+	else if (!(mode & S_ISVTX) && (mode & S_IXOTH))
+		ret->rights[9] = 'x';
+	else
+		ret->rights[9] = '-';
 	ret->rights[10] = '\0';
 }
 

@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/29 15:58:41 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/02 15:38:25 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 			name = dup;
 		else if (*(name + 1) == '\0' && name != av[start])
 		{
-			ft_printf("here\n");
 			*name = '\0';
 			name = ft_strrchr(dup, (int)'/');
 			if (!name)
@@ -138,8 +137,6 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 		if (!list)
 		{
 			list = create_elem(list2->path, NULL, list2->name);
-			ft_printf("list2->av_name : %s\n", list2->av_name);
-			ft_printf("list->name : %s, list->path : %s\n", list2->name, list2->path);
 			list->av_name = ft_strdup(list2->av_name);
 		}
 		else
