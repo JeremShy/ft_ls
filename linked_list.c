@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/02 15:22:37 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/04 15:06:05 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ t_file	*create_elem(char *path, t_file *suivant, char *name)
 	join = ft_strjoin(path, name);
 	if (lstat(join, &structure) == -1)
 	{
-		print_error((char*)path);
+		join = ft_strjoinaf1(join, "/");
+		print_error_fp((char*)join);
+		free(join);
 		return (0);
 	}
 	if ((structure.st_mode & S_IFMT) == S_IFLNK)

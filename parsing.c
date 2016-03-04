@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:26:12 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/11 15:44:52 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/04 15:18:04 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,24 @@ int		find_start(int ac, char **av)
 	return (i);
 }
 
+void	check_validity(char *av)
+{
+	int	i;
+
+	i = 1;
+	while (av[i] != '\0')
+	{
+		if (av[i] != 'l' && av[i] != 'R' && av[i] != 'a' && av[i] != 'r'
+			&& av[i] != 't')
+			{
+				ft_printf("ls: illegal option -- %c\n", av[i]);
+				ft_printf("usage: ls [-lRart] [file ...]\n");
+				exit(EXIT_FAILURE);
+			}
+			i++;
+	}
+}
+
 t_opt   ft_parsing(int ac, char **av)
 {
 	t_opt   options;
@@ -54,6 +72,8 @@ t_opt   ft_parsing(int ac, char **av)
 	options = ft_init(&i);
 	cont = 1;
 	while(i < ac && cont && !ft_strequ(av[i], "--"))
+	{
+		check_validity(av[i]);
 		if (av[i][0] == '-')
 		{
 			if (ft_strchr(av[i], 'l'))
@@ -70,5 +90,6 @@ t_opt   ft_parsing(int ac, char **av)
 		}
 		else
 			cont = 0;
+	}
 	return (options);
 }

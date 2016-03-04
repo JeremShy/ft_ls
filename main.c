@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/02 15:36:10 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/04 15:07:18 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		print_error(char *dir)
 
 	dup = ft_strdup(dir);
 	ptr = ft_strrchr(dup, '/');
-	if (ptr != dup && ptr)
+	if (ptr && ptr != dup)
 	{
 		*ptr = '\0';
 		ptr = ft_strrchr(dup, '/');
@@ -28,11 +28,22 @@ void		print_error(char *dir)
 	if (ptr)
 		ptr++;
 	else
-		ptr = dir;
+		ptr = dup;
 	message = ft_strjoin("ls: ", ptr);
 	perror(message);
 	free(message);
 	free(dup);
+}
+
+void		print_error_fp(char *dir)
+{
+
+	char *message;
+
+	message = ft_strjoin("ls: ", dir);
+	perror(message);
+	free(message);
+
 }
 
 int			list_folder(t_opt options, char *dir, int print_name,
@@ -51,6 +62,8 @@ int			list_folder(t_opt options, char *dir, int print_name,
 	list = NULL;
 	if (!directory && errno != 20)
 	{
+		if (print_name)
+			ft_printf("%s:\n", name_pr);
 		print_error(dir);
 		return (0);
 	}

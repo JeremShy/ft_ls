@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/02 15:38:25 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/03 21:39:24 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,6 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 			list2 = malloc(sizeof(t_file));
 			ft_strncpy(list2->name, name, PATH_MAX);
 			list2->path = ft_strsub(dup, 0, name - dup);
-			if (ft_strequ(list2->path, "") && ft_strequ(list2->name, ""))
-			{
-				free(list2->path);
-				list2->path = ft_strdup("/");
-			}
 			list2->av_name = ft_strdup(av[start]);
 			list2->next = NULL;
 		}
@@ -134,15 +129,19 @@ t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 	list = NULL;
 	while (list2)
 	{
+		if (ft_strequ(list2->path, "") && ft_strequ(list2->name, ""))
+		{
+			free(list2->path);
+			list2->path = ft_strdup("/");
+		}
 		if (!list)
 		{
 			list = create_elem(list2->path, NULL, list2->name);
-			list->av_name = ft_strdup(list2->av_name);
+			if (list)
+				list->av_name = ft_strdup(list2->av_name);
 		}
 		else
-		{
 			add_elem_end_av(list2->path, list, list2->name, list2->av_name);
-		}
 		list2 = list2->next;
 	}
 	destroy_fake_list(list2);

@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/29 11:37:44 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/04 14:53:44 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,5 @@ t_file					*set_own_grp(t_stat structure, t_file *ret);
 void					destroy_list(t_file *list);
 void					ft_print(t_file *list, t_opt options, int print_total);
 t_file					*create_dir_list(t_opt options, int start, char **av, int ac);
+void					print_error_fp(char *dir);
 #endif
