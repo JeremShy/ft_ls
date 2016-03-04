@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/04 15:06:05 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/04 15:42:27 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ t_file	*create_elem(char *path, t_file *suivant, char *name)
 	ret->min = ft_strsub(c_time, 14, 2);
 	ret->sec = ft_strsub(c_time, 17, 2);
 	ret->blocks = structure.st_blocks;
+	ret->is_file = 0;
 	ret->next = suivant;
 	return (ret);
 }

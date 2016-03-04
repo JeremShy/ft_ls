@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/04 14:53:44 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/04 15:43:11 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct			s_file
 	int				major;
 	int				minor;
 	struct s_file	*next;
+	int				is_file;
 }						t_file;
 
 typedef struct			s_max

@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/04 15:07:18 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/04 15:55:14 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ int			list_folder(t_opt options, char *dir, int print_name,
 	char		*name;
 	char		*path;
 	int		print_total;
+	int		is_file;
 
+	is_file = 0;;
 	errno = 0;
 	print_total = 1;
 	directory = opendir(dir);
@@ -85,6 +87,7 @@ int			list_folder(t_opt options, char *dir, int print_name,
 			name++;
 		path = ft_strsub(dir, 0, name - dir);
 		list = create_elem(path, NULL, name);
+		is_file = 1;
 		print_total = 0;
 		print_name = 0;
 	}
@@ -109,7 +112,7 @@ int			list_folder(t_opt options, char *dir, int print_name,
 	if (errno != 20)
 		closedir(directory);
 	errno = 0;
-	return (1);
+	return (!is_file);
 }
 
 int			main(int ac, char **av)
@@ -137,10 +140,10 @@ int			main(int ac, char **av)
 			print_name = 1;
 		tmp = ft_strequ(list->name, "") ? ft_strdup(list->path):
 					ft_strjoinaf1(ft_strjoin(list->path, list->name), "/");
-		list_folder(options, tmp, print_name, list->av_name);
-		free(tmp);
-		if (start != ac - 1 && start != ac && list->next != NULL)
+		if (list_folder(options, tmp, print_name, list->av_name) &&
+			start != ac - 1 && start != ac && list->next != NULL)
 			ft_printf("\n");
+		free(tmp);
 		list = list->next;
 	}
 	destroy_list(list);
