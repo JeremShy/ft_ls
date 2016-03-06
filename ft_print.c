@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 14:39:55 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/04 15:44:07 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/06 14:46:04 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,8 @@ static int	find_total(t_file *list)
 	return (total);
 }
 
-static void	ft_print_with_l(t_file *list, int print_total)
+static void	print_elem(t_file *list, t_max max)
 {
-	t_max	max;
-
-	max = find_max(list);
-	if (print_total)
-		ft_printf("total %d\n", find_total(list));
-	while(list != NULL)
-	{
 		ft_printf("%*s ", max.rights, list->rights);
 		ft_printf("%*d ", max.nlinks + 1, list->nlinks);
 		ft_printf("%*s ", (max.owner_name + 1) * -1, list->owner_name);
@@ -51,10 +44,21 @@ static void	ft_print_with_l(t_file *list, int print_total)
 		if (list->path_to_lnk)
 			ft_printf(" -> %s", list->path_to_lnk);
 		ft_printf("\n");
+}
+
+static void	ft_print_with_l(t_file *list, int print_total)
+{
+	t_max	max;
+
+	max = find_max(list);
+	if (print_total)
+		ft_printf("total %d\n", find_total(list));
+	while(list != NULL)
+	{
+		print_elem(list, max);
 		list = list->next;
 	}
 }
-
 
 static void	ft_print_normal(t_file *list)
 {
