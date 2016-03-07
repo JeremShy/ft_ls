@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+         #
+#    By: JeremShy <JeremShy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/08 11:49:18 by jcamhi            #+#    #+#              #
-#    Updated: 2016/02/02 12:13:00 by jcamhi           ###   ########.fr        #
+#    Updated: 2016/03/07 11:25:52 by JeremShy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRC_NAME = main.c \
 		   find_max.c \
 		   sort.c \
 		   ft_rec.c \
-		   linked_list_2.c
+		   linked_list_2.c \
+			 list_folder.c
 
 OBJ_PATH = ./obj/
 
@@ -40,20 +41,20 @@ INC = $(addprefix -I,$(INC_PATH))
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(LFLAGS) $(INC) -o $@ $^ 
+	$(CC) $(LFLAGS) $(INC) -o $@ $^
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 #	make -C libsrcs/libft
 #	make -C libsrcs/ft_printf
 	@mkdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
-	$(CC) $(CFLAGS) $(INC) -o $@ -c $< 
+	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
 
 clean:
 #	make -C libsrcs/libft clean
 #	make -C libsrcs/ft_printf clean
 	/bin/rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
-	
+
 fclean: clean
 	rm -fv $(NAME)
 #	make -C libsrcs/libft fclean

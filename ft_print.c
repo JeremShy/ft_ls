@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: JeremShy <JeremShy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 14:39:55 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/06 14:46:04 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/07 11:26:11 by JeremShy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	find_total(t_file *list)
 	total = 0;
 	while (list != NULL)
 	{
-		total += list->blocks; 
+		total += list->blocks;
 		list = list->next;
 	}
 	return (total);
@@ -35,7 +35,7 @@ static void	print_elem(t_file *list, t_max max)
 		{
 			ft_printf("%*d, ", max.major, list->major);
 			ft_printf("%*d ", max.minor, list->minor);
-		}
+	}
 		else
 			ft_printf("%*d ", max.nbytes + 1, list->nbytes);
 		ft_printf("%s %s %s:%s ", list->mounth, list->day_nbr,

@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/04 15:43:11 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/07 11:35:16 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,5 @@ void					destroy_list(t_file *list);
 void					ft_print(t_file *list, t_opt options, int print_total);
 t_file					*create_dir_list(t_opt options, int start, char **av, int ac);
 void					print_error_fp(char *dir);
+char					*list_file(char *dir, char **path, t_file **list);
 #endif

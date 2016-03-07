@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: JeremShy <JeremShy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/04 15:55:14 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/07 11:36:51 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		print_error_fp(char *dir)
 }
 
 int			list_folder(t_opt options, char *dir, int print_name,
-			char *name_pr)
+		char *name_pr)
 {
 	DIR			*directory;
 	t_dirent	*truc;
@@ -71,22 +71,7 @@ int			list_folder(t_opt options, char *dir, int print_name,
 	}
 	if (errno == 20)
 	{
-		name = ft_strrchr(dir, (int)'/');
-		if (!name)
-			name = dir;
-		else if (*(name + 1) == '\0' && name != dir)
-		{
-			*name = '\0';
-			name = ft_strrchr(dir, (int)'/');
-			if (!name)
-				name = dir;
-			else
-				name++;
-		}
-		else
-			name++;
-		path = ft_strsub(dir, 0, name - dir);
-		list = create_elem(path, NULL, name);
+		name = list_file(dir, &path, &list);
 		is_file = 1;
 		print_total = 0;
 		print_name = 0;
@@ -139,9 +124,9 @@ int			main(int ac, char **av)
 		if (start != ac - 1 && start != ac)
 			print_name = 1;
 		tmp = ft_strequ(list->name, "") ? ft_strdup(list->path):
-					ft_strjoinaf1(ft_strjoin(list->path, list->name), "/");
+			ft_strjoinaf1(ft_strjoin(list->path, list->name), "/");
 		if (list_folder(options, tmp, print_name, list->av_name) &&
-			start != ac - 1 && start != ac && list->next != NULL)
+				start != ac - 1 && start != ac && list->next != NULL)
 			ft_printf("\n");
 		free(tmp);
 		list = list->next;
