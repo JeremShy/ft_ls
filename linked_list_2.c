@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/04 15:35:31 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/07 21:05:13 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,67 +83,20 @@ void	add_list_with_name(t_file *list, char *name, char *path, int size)
 
 t_file	*create_dir_list(t_opt options, int start, char **av, int ac)
 {
-	char	*name;
-	char	*dup;
 	t_file	*list2;
 	t_file	*list;
 	t_opt	tmp;
-	int		start2;
 
-	list2 = NULL;
-	options.l = 0;
-	start2 = start;
-	while (start < ac)
-	{
-		dup = ft_strdup(av[start]);
-		name = ft_strrchr(dup, (int)'/');
-		if (!name)
-			name = dup;
-		else if (*(name + 1) == '\0' && name != av[start])
-		{
-			*name = '\0';
-			name = ft_strrchr(dup, (int)'/');
-			if (!name)
-				name = dup;
-			else
-				name++;
-		}
-		else
-			name++;
-		if (!list2)
-		{
-			list2 = malloc(sizeof(t_file));
-			ft_strncpy(list2->name, name, PATH_MAX);
-			list2->path = ft_strsub(dup, 0, name - dup);
-			list2->av_name = ft_strdup(av[start]);
-			list2->next = NULL;
-		}
-		else
-			add_list_with_name(list2, name, av[start], name - dup);
-		start++;
-		free(dup);
-	}
-	tmp.t = 0;
-	tmp.r = 0;
+	list2 = create_fake_list(av, start, ac);
+	tmp = init_opt();
 	list2 = ft_sort(list2, tmp);
 	list = NULL;
 	while (list2)
 	{
-		if (ft_strequ(list2->path, "") && ft_strequ(list2->name, ""))
-		{
-			free(list2->path);
-			list2->path = ft_strdup("/");
-		}
-		if (!list)
-		{
-			list = create_elem(list2->path, NULL, list2->name);
-			if (list)
-				list->av_name = ft_strdup(list2->av_name);
-		}
-		else
-			add_elem_end_av(list2->path, list, list2->name, list2->av_name);
+		list = create_real_list(list, list2);
 		list2 = list2->next;
 	}
 	destroy_fake_list(list2);
+	links(list, options);
 	return (list);
 }

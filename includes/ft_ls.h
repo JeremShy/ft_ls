@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:26:14 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/07 11:35:16 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/07 20:35:04 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,34 @@ t_max					find_max(t_file *list);
 int						len(int nbr);
 t_file					*ft_sort(t_file *list, t_opt opt);
 void					ft_rec(t_file *list, t_opt options, char *dir);
-int						list_folder(t_opt options, char *dir, int print_name, char *name_pr);
+int						list_folder(t_opt options, char *dir, char *name_pr, char *lnk);
 t_file					*set_own_grp(t_stat structure, t_file *ret);
 void					destroy_list(t_file *list);
 void					ft_print(t_file *list, t_opt options, int print_total);
 t_file					*create_dir_list(t_opt options, int start, char **av, int ac);
 void					print_error_fp(char *dir);
-char					*list_file(char *dir, char **path, t_file **list);
+void					list_file(char *dir, t_file **list);
+char					rights_3(mode_t mode);
+char					rights_6(mode_t mode);
+char					rights_9(mode_t mode);
+void					links(t_file *list, t_opt opt);
+void					sort_n_print(t_file *list, t_opt options, int print_total, char *dir);
+t_file					*create_printable_list(char *lnk, t_file *list, DIR *directory, t_opt options);
+int						check_error(DIR *directory, char *name_pr, char *dir);
+t_file					*folder_is_file(char *lnk, char *dir, int *print_total, int *is_file);
+void					while_main(t_file *list, int ac, int start, t_opt options);
+t_file					*create_2(t_file *ret, t_stat structure, char *name, char *path);
+t_file					*create_link(t_stat structure, t_file *ret, char *join);
+void					get_rights(t_file *ret, mode_t mode);
+char					*find_name(char *dup, char **av, int start);
+t_file					*create_fake_list(char **av, int start, int ac);
+void					add_list_with_name(t_file *list, char *name, char *path, int size);
+t_opt					init_opt(void);
+t_file					*create_real_list(t_file *list, t_file *list2);
+long long				(*init_tab(t_opt opt))(t_file *, t_file *, t_opt);
+long long				ft_rights(t_file *elem1, t_file *elem2, t_opt opt);
+long long				ft_lexic(t_file *elem1, t_file *elem2, t_opt opt);
+long long				ft_lexic_inv(t_file *elem1, t_file *elem2, t_opt opt);
+long long				ft_mod(t_file *elem1, t_file *elem2, t_opt opt);
+long long				ft_mod_inv(t_file *elem1, t_file *elem2, t_opt opt);
 #endif

@@ -23,7 +23,7 @@ void	ft_rec(t_file *list, t_opt options, char *dir)
 		{
 			path = ft_strjoinaf1(ft_strjoin(dir, list->name), "/");
 			ft_printf("\n%s:\n", path);
-			list_folder(options, path, 0, NULL);
+			list_folder(options, path, NULL, NULL);
 			free(path);
 		}
 		list = list->next;
