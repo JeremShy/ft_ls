@@ -6,7 +6,7 @@
 /*   By: JeremShy <JeremShy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 14:39:55 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/07 11:26:11 by JeremShy         ###   ########.fr       */
+/*   Updated: 2016/03/08 15:43:36 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,23 @@ static int	find_total(t_file *list)
 
 static void	print_elem(t_file *list, t_max max)
 {
-		ft_printf("%*s ", max.rights, list->rights);
-		ft_printf("%*d ", max.nlinks + 1, list->nlinks);
-		ft_printf("%*s ", (max.owner_name + 1) * -1, list->owner_name);
-		ft_printf("%*s", (max.group_name + 1) * -1, list->group_name);
-		if (list->rights[0] == 'c' || list->rights[0] == 'b')
-		{
-			ft_printf("%*d, ", max.major, list->major);
-			ft_printf("%*d ", max.minor, list->minor);
+	ft_printf("%*s ", max.rights, list->rights);
+	ft_printf("%*d ", max.nlinks + 1, list->nlinks);
+	ft_printf("%*s ", (max.owner_name + 1) * -1, list->owner_name);
+	ft_printf("%*s", (max.group_name + 1) * -1, list->group_name);
+	if (list->rights[0] == 'c' || list->rights[0] == 'b')
+	{
+		ft_printf("%*d, ", max.major, list->major);
+		ft_printf("%*d ", max.minor, list->minor);
 	}
-		else
-			ft_printf("%*d ", max.nbytes + 1, list->nbytes);
-		ft_printf("%s %s %s:%s ", list->mounth, list->day_nbr,
-				list->hour, list->min);
-		ft_printf("%s", list->name);
-		if (list->path_to_lnk)
-			ft_printf(" -> %s", list->path_to_lnk);
-		ft_printf("\n");
+	else
+		ft_printf("%*d ", max.nbytes + 1, list->nbytes);
+	ft_printf("%s %s %s:%s ", list->mounth, list->day_nbr,
+			list->hour, list->min);
+	ft_printf("%s", list->name);
+	if (list->path_to_lnk)
+		ft_printf(" -> %s", list->path_to_lnk);
+	ft_printf("\n");
 }
 
 static void	ft_print_with_l(t_file *list, int print_total)
@@ -53,7 +53,7 @@ static void	ft_print_with_l(t_file *list, int print_total)
 	max = find_max(list);
 	if (print_total)
 		ft_printf("total %d\n", find_total(list));
-	while(list != NULL)
+	while (list != NULL)
 	{
 		print_elem(list, max);
 		list = list->next;

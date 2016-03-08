@@ -6,7 +6,7 @@
 /*   By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 20:21:28 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/07 20:49:53 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/08 16:02:22 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ long long	ft_mod_inv(t_file *elem1, t_file *elem2, t_opt opt)
 	return (ft_mod(elem1, elem2, opt) * -1);
 }
 
-long long	(*init_tab(t_opt opt))(t_file *, t_file *, t_opt)
+void		*init_tab(t_opt opt)
 {
 	long long	(*f)(t_file *, t_file *, t_opt);
 
@@ -64,5 +64,5 @@ long long	(*init_tab(t_opt opt))(t_file *, t_file *, t_opt)
 		f = ft_lexic_inv;
 	else
 		f = ft_lexic;
-	return (f);
+	return ((void*)f);
 }

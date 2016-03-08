@@ -6,7 +6,7 @@
 /*   By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 19:40:20 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/07 20:16:15 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/08 15:43:06 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ t_file	*create_real_list(t_file *list, t_file *list2)
 
 t_file	*create_fake_list(char **av, int start, int ac)
 {
-	char *dup;
-	char *name;
-	t_file *list2;
+	char	*dup;
+	char	*name;
+	t_file	*list2;
 
 	list2 = NULL;
 	while (start < ac)
@@ -75,7 +75,7 @@ t_file	*create_fake_list(char **av, int start, int ac)
 		start++;
 		free(dup);
 	}
-	return(list2);
+	return (list2);
 }
 
 t_opt	init_opt(void)

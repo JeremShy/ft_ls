@@ -6,7 +6,7 @@
 /*   By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 02:52:25 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/07 18:49:07 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/08 15:44:37 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	handle_type(mode_t mode)
 {
 	if ((mode & S_IFMT) == S_IFREG)
 		return ('-');
-	else if ((mode & S_IFMT) == S_IFIFO) 
+	else if ((mode & S_IFMT) == S_IFIFO)
 		return ('p');
 	else if ((mode & S_IFMT) == S_IFCHR)
 		return ('c');
@@ -32,7 +32,7 @@ static char	handle_type(mode_t mode)
 		return ('-');
 }
 
-void	get_rights(t_file *ret, mode_t mode)
+void		get_rights(t_file *ret, mode_t mode)
 {
 	ret->rights[0] = handle_type(mode);
 	ret->rights[1] = (mode & S_IRUSR ? 'r' : '-');
@@ -47,7 +47,7 @@ void	get_rights(t_file *ret, mode_t mode)
 	ret->rights[10] = '\0';
 }
 
-void	add_elem_end(char *path, t_file *list, char *name)
+void		add_elem_end(char *path, t_file *list, char *name)
 {
 	t_file *elem;
 
@@ -58,7 +58,7 @@ void	add_elem_end(char *path, t_file *list, char *name)
 	list->next = elem;
 }
 
-void	add_elem_end_av(char *path, t_file *list, char *name, char *av)
+void		add_elem_end_av(char *path, t_file *list, char *name, char *av)
 {
 	t_file *elem;
 
@@ -70,7 +70,7 @@ void	add_elem_end_av(char *path, t_file *list, char *name, char *av)
 	list->next = elem;
 }
 
-void	add_elem_start(char *path, t_file **list, char *name)
+void		add_elem_start(char *path, t_file **list, char *name)
 {
 	t_file	*elem;
 

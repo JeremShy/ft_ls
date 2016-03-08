@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 15:27:36 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/07 16:42:01 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/08 16:12:21 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	sort_n_print(t_file *list, t_opt options, int print_total, char *dir)
 	destroy_list(list);
 }
 
-t_file *create_printable_list(char *dir, t_file *list, DIR *directory, t_opt options)
+t_file	*create_printable_list(char *dir, t_file *list,
+		DIR *directory, t_opt options)
 {
 	t_dirent *truc;
 
@@ -54,7 +55,7 @@ t_file *create_printable_list(char *dir, t_file *list, DIR *directory, t_opt opt
 	return (list);
 }
 
-int	check_error(DIR *directory, char *name_pr, char *dir)
+int		check_error(DIR *directory, char *name_pr, char *dir)
 {
 	if (!directory && errno != 20)
 	{
@@ -66,7 +67,7 @@ int	check_error(DIR *directory, char *name_pr, char *dir)
 	return (0);
 }
 
-t_file *folder_is_file(char *lnk, char *dir, int *print_total, int *is_file)
+t_file	*folder_is_file(char *lnk, char *dir, int *print_total, int *is_file)
 {
 	t_file *list;
 

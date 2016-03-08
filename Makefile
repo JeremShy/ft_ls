@@ -6,7 +6,7 @@
 #    By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/08 11:49:18 by jcamhi            #+#    #+#              #
-#    Updated: 2016/03/07 20:35:57 by jcamhi           ###   ########.fr        #
+#    Updated: 2016/03/08 16:06:28 by jcamhi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,9 +46,9 @@ INC = $(addprefix -I,$(INC_PATH))
 all : $(NAME)
 
 $(NAME) : $(OBJ)
+	make -C libsrcs/libft
+	make -C libsrcs/ft_printf
 	$(CC) $(LFLAGS) $(INC) -o $@ $^
-	#	make -C libsrcs/libft
-	#	make -C libsrcs/ft_printf
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
@@ -57,13 +57,13 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 clean:
 	/bin/rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
-	#	make -C libsrcs/libft clean
-	#	make -C libsrcs/ft_printf clean
+	make -C libsrcs/libft clean
+	make -C libsrcs/ft_printf clean
 
 fclean: clean
 	rm -fv $(NAME)
-	#	make -C libsrcs/libft fclean
-	#	make -C libsrcs/ft_printf fclean
+	make -C libsrcs/libft fclean
+	make -C libsrcs/ft_printf fclean
 
 re: fclean all
 

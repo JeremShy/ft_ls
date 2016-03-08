@@ -6,7 +6,7 @@
 /*   By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 18:33:10 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/07 18:48:54 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/08 16:18:17 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_file	*create_elem(char *path, t_file *suivant, char *name)
 {
-	t_file *ret;
+	t_file	*ret;
 	t_stat	structure;
 	char	*join;
 
@@ -30,7 +30,7 @@ t_file	*create_elem(char *path, t_file *suivant, char *name)
 	}
 	ret = create_link(structure, ret, join);
 	free(join);
-	ret = create_2(ret, structure, name, path); 
+	ret = create_2(ret, structure, name, path);
 	ret->next = suivant;
 	return (ret);
 }

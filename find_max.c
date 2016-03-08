@@ -6,7 +6,7 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:53:29 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/02/29 15:00:44 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/08 15:43:24 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int				len(int nbr)
 {
-	char    *str;
-	int     ret;
+	char	*str;
+	int		ret;
 
 	str = ft_itoa_base_ll((long long)nbr, 10);
 	ret = ft_strlen(str);

@@ -6,7 +6,7 @@
 /*   By: JeremShy <JeremShy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:19:38 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/07 11:36:51 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/08 15:50:37 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,19 @@ void		print_error(char *dir)
 
 void		print_error_fp(char *dir)
 {
-
 	char *message;
 
 	message = ft_strjoin("ls: ", dir);
 	perror(message);
 	free(message);
-
 }
 
 int			list_folder(t_opt options, char *dir, char *name_pr, char *lnk)
 {
 	DIR			*directory;
 	t_file		*list;
-	int		print_total;
-	int		is_file;
+	int			print_total;
+	int			is_file;
 
 	is_file = 0;
 	print_total = 1;
@@ -76,7 +74,7 @@ int			main(int ac, char **av)
 	t_opt		options;
 	int			start;
 	t_file		*list;
-	int		print_name;
+	int			print_name;
 
 	print_name = 0;
 	options = ft_parsing(ac, av);

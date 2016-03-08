@@ -6,17 +6,17 @@
 /*   By: jcamhi <jcamhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:12:33 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/07 21:05:13 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/08 15:48:55 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_ls.h>
 
-t_file  *set_own_grp(t_stat structure, t_file *ret)
+t_file	*set_own_grp(t_stat structure, t_file *ret)
 {
-	struct passwd   *pass;
-	struct group    *grp;
-	int             uid;
+	struct passwd	*pass;
+	struct group	*grp;
+	int				uid;
 
 	uid = structure.st_uid;
 	pass = getpwuid(uid);

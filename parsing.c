@@ -6,13 +6,13 @@
 /*   By: jcamhi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 22:26:12 by jcamhi            #+#    #+#             */
-/*   Updated: 2016/03/04 15:33:44 by jcamhi           ###   ########.fr       */
+/*   Updated: 2016/03/08 15:55:26 by jcamhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_ls.h>
 
-static t_opt   ft_init(int *i)
+static t_opt	ft_init(int *i)
 {
 	t_opt options;
 
@@ -26,14 +26,14 @@ static t_opt   ft_init(int *i)
 	return (options);
 }
 
-int		find_start(int ac, char **av)
+int				find_start(int ac, char **av)
 {
 	int	i;
 	int	cont;
 
 	i = 1;
 	cont = 1;
-	while(i < ac && cont)
+	while (i < ac && cont)
 	{
 		if (av[i][0] == '-')
 			i++;
@@ -45,7 +45,7 @@ int		find_start(int ac, char **av)
 	return (i);
 }
 
-void	check_validity(char *av)
+void			check_validity(char *av)
 {
 	int	i;
 
@@ -53,39 +53,44 @@ void	check_validity(char *av)
 	while (av[i] != '\0')
 	{
 		if (av[i] != 'l' && av[i] != 'R' && av[i] != 'a' && av[i] != 'r'
-			&& av[i] != 't')
-			{
-				ft_printf("ls: illegal option -- %c\n", av[i]);
-				ft_printf("usage: ls [-lRart] [file ...]\n");
-				exit(EXIT_FAILURE);
-			}
-			i++;
+				&& av[i] != 't')
+		{
+			ft_printf("ls: illegal option -- %c\n", av[i]);
+			ft_printf("usage: ls [-lRart] [file ...]\n");
+			exit(EXIT_FAILURE);
+		}
+		i++;
 	}
 }
 
-t_opt   ft_parsing(int ac, char **av)
+void			norme_parsing(int i, char **av, t_opt *options)
 {
-	t_opt   options;
-	int     i;
-	int     cont;
+	if (ft_strchr(av[i], 'l'))
+		options->l = 1;
+	if (ft_strchr(av[i], 'R'))
+		options->rmaj = 1;
+	if (ft_strchr(av[i], 'a'))
+		options->a = 1;
+	if (ft_strchr(av[i], 'r'))
+		options->r = 1;
+	if (ft_strchr(av[i], 't'))
+		options->t = 1;
+}
+
+t_opt			ft_parsing(int ac, char **av)
+{
+	t_opt	options;
+	int		i;
+	int		cont;
 
 	options = ft_init(&i);
 	cont = 1;
-	while(i < ac && cont && !ft_strequ(av[i], "--"))
+	while (i < ac && cont && !ft_strequ(av[i], "--"))
 	{
 		if (av[i][0] == '-')
 		{
 			check_validity(av[i]);
-			if (ft_strchr(av[i], 'l'))
-				options.l = 1;
-			if (ft_strchr(av[i], 'R'))
-				options.rmaj = 1;
-			if (ft_strchr(av[i], 'a'))
-				options.a = 1;
-			if (ft_strchr(av[i], 'r'))
-				options.r = 1;
-			if (ft_strchr(av[i], 't'))
-				options.t = 1;
+			norme_parsing(i, av, &options);
 			i++;
 		}
 		else
